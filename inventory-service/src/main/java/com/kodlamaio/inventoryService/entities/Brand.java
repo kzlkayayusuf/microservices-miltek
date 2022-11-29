@@ -1,12 +1,10 @@
-package com.kodlamaio.discoveryServer.entities;
+package com.kodlamaio.inventoryService.entities;
 
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,19 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="models")
-public class Model {
+@Table(name = "brands")
+public class Brand {
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private String id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@ManyToOne
-	@JoinColumn(name="brand_id")
-	private Brand brand;
-	
-	@OneToMany(mappedBy="model")
-	List<Car> cars;
+
+	@OneToMany(mappedBy = "brand")
+	private List<Model> models;
 }

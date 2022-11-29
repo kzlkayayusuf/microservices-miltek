@@ -1,4 +1,4 @@
-package com.kodlamaio.discoveryServer.entities;
+package com.kodlamaio.inventoryService.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
