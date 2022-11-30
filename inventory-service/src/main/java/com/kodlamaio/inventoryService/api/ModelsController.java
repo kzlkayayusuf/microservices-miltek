@@ -53,7 +53,7 @@ public class ModelsController {
 		return modelService.getByName(name);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable String id) {
 		modelService.deleteById(id);
 	}

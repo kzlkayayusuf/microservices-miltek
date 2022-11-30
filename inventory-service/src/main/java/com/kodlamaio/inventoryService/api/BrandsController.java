@@ -53,7 +53,7 @@ public class BrandsController {
 		return brandService.getByName(name);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable String id) {
 		brandService.deleteById(id);
 	}

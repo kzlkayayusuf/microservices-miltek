@@ -53,7 +53,7 @@ public class CarsController {
 		return carService.getByPlate(plate);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable String id) {
 		carService.deleteById(id);
 	}
