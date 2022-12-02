@@ -21,4 +21,8 @@ public interface CarService {
 	GetCarResponse getByPlate(String plate);
 	
 	void deleteById(String id);
+	
+	UpdateCarResponse updateCarState(String id,int state);
+	
+	void checkCarAvailable(String carId);
 }

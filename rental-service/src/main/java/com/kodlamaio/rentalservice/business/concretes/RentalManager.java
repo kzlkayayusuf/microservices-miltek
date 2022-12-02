@@ -7,15 +7,21 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.kodlamaio.common.events.RentalCreatedEvent;
+import com.kodlamaio.common.events.RentalUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;
 import com.kodlamaio.rentalservice.business.requests.create.CreateRentalRequest;
+import com.kodlamaio.rentalservice.business.requests.update.UpdateRentalRequest;
 import com.kodlamaio.rentalservice.business.responses.create.CreateRentalResponse;
 import com.kodlamaio.rentalservice.business.responses.get.GetAllRentalsResponse;
+import com.kodlamaio.rentalservice.business.responses.get.GetRentalResponse;
+import com.kodlamaio.rentalservice.business.responses.update.UpdateRentalResponse;
+import com.kodlamaio.rentalservice.client.CarClient;
 import com.kodlamaio.rentalservice.dataAccess.RentalRepository;
 import com.kodlamaio.rentalservice.entities.Rental;
-import com.kodlamaio.rentalservice.kafka.RentalProducer;
+import com.kodlamaio.rentalservice.kafka.RentalCreatedProducer;
+import com.kodlamaio.rentalservice.kafka.RentalUpdatedProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -25,7 +31,9 @@ public class RentalManager implements RentalService {
 
 	private RentalRepository rentalRepository;
 	private ModelMapperService modelMapperService;
-	private RentalProducer rentalProducer;
+	private RentalCreatedProducer rentalCreatedProducer;
+	private RentalUpdatedProducer rentalUpdatedProducer;
+	private CarClient carClient;
 
 	@Override
 	public List<GetAllRentalsResponse> getAll() {
@@ -40,27 +48,81 @@ public class RentalManager implements RentalService {
 
 	@Override
 	public CreateRentalResponse add(CreateRentalRequest createRentalRequest) {
-		//checkIfBrandExistsByCarId(createRentalRequest.getCarId());
+		carClient.checkCarAvailable(createRentalRequest.getCarId());
+		checkIfRentalExistsByCarId(createRentalRequest.getCarId());
+		// checkIfRentalNotExistsByCarId(createRentalRequest.getCarId());
 		Rental rental = this.modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 		rental.setId(UUID.randomUUID().toString());
 		rental.setTotalPrice(createRentalRequest.getDailyPrice() * createRentalRequest.getRentedForDays());
-		Rental rentalCreated=this.rentalRepository.save(rental);
-		
+		Rental rentalCreated = this.rentalRepository.save(rental);
+
 		RentalCreatedEvent rentalCreatedEvent = new RentalCreatedEvent();
 		rentalCreatedEvent.setCarId(rentalCreated.getCarId());
 		rentalCreatedEvent.setMessage("Rental Created");
-		
-		this.rentalProducer.sendMessage(rentalCreatedEvent);
+
+		this.rentalCreatedProducer.sendMessage(rentalCreatedEvent);
 
 		CreateRentalResponse createRentalResponse = this.modelMapperService.forResponse().map(rental,
 				CreateRentalResponse.class);
 		return createRentalResponse;
 	}
 
-	private void checkIfBrandExistsByCarId(String id) {
-		if(this.rentalRepository.findByCarId(id).isPresent()) {
+	@Override
+	public UpdateRentalResponse update(UpdateRentalRequest updateRentalRequest) {
+		checkIfRentalNotExistsById(updateRentalRequest.getId());
+		//checkIfRentalNotExistsByCarId(updateRentalRequest.getCarId());
+
+		Rental rental = this.rentalRepository.findById(updateRentalRequest.getId()).get();
+		RentalUpdatedEvent rentalUpdatedEvent = new RentalUpdatedEvent();
+		rentalUpdatedEvent.setOldCarId(rental.getCarId());
+		
+		rental.setCarId(updateRentalRequest.getCarId());
+		rental.setDailyPrice(updateRentalRequest.getDailyPrice());
+		rental.setRentedForDays(updateRentalRequest.getRentedForDays());
+		rental.setTotalPrice(updateRentalRequest.getDailyPrice()*updateRentalRequest.getRentedForDays());
+		
+		Rental updatedRental = rentalRepository.save(rental);
+		
+		rentalUpdatedEvent.setNewCarId(updatedRental.getCarId());
+		rentalUpdatedEvent.setMessage("Rental Updated");
+		rentalUpdatedProducer.sendMessage(rentalUpdatedEvent);
+		
+		UpdateRentalResponse updateRentalResponse = this.modelMapperService.forResponse().map(updatedRental,
+				UpdateRentalResponse.class);
+		return updateRentalResponse;
+	}
+
+	@Override
+	public GetRentalResponse getById(String id) {
+		checkIfRentalNotExistsById(id);
+		Rental rental = this.rentalRepository.findById(id).get();
+		GetRentalResponse rentalResponse = this.modelMapperService.forResponse().map(rental, GetRentalResponse.class);
+		return rentalResponse;
+	}
+
+	@Override
+	public void deleteById(String id) {
+		checkIfRentalNotExistsById(id);
+		this.rentalRepository.deleteById(id);
+
+	}
+
+	private void checkIfRentalExistsByCarId(String id) {
+		if (this.rentalRepository.findByCarId(id).isPresent()) {
 			throw new BusinessException("RENTAL.EXISTS");
 		}
 	}
-	
+
+	private void checkIfRentalNotExistsByCarId(String id) {
+		if (!this.rentalRepository.findByCarId(id).isPresent()) {
+			throw new BusinessException("RENTAL.CARID.NOT.EXISTS");
+		}
+	}
+
+	private void checkIfRentalNotExistsById(String id) {
+		if (!this.rentalRepository.findById(id).isPresent()) {
+			throw new BusinessException("RENTAL.NOT.EXISTS");
+		}
+	}
+
 }

@@ -21,7 +21,7 @@ public class InventoryServiceApplication {
 	public ModelMapper getModelMapper() {
 		return new ModelMapper();
 	}
-	
+
 	@Bean
 	public ModelMapperService getModelMapperService(ModelMapper modelMapper) {
 		return new ModelMapperManager(modelMapper);

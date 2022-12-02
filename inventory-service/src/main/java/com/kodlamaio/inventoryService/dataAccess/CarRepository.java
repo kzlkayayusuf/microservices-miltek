@@ -8,4 +8,6 @@ import com.kodlamaio.inventoryService.entities.Car;
 
 public interface CarRepository extends JpaRepository<Car, String> {
 	Optional<Car> findByPlate(String plate);
+
+	Optional<Car>  findByModelId(String modelId);
 }

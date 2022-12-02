@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.inventoryService.business.abstracts.BrandService;
 import com.kodlamaio.inventoryService.business.abstracts.ModelService;
 import com.kodlamaio.inventoryService.business.requests.create.CreateModelRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateModelRequest;
@@ -26,6 +27,7 @@ public class ModelManager implements ModelService {
 
 	private ModelRepository modelRepository;
 	private ModelMapperService modelMapperService;
+	private BrandService brandService;
 
 	@Override
 	public List<GetAllModelsResponse> getAll() {
@@ -39,6 +41,7 @@ public class ModelManager implements ModelService {
 	@Override
 	public CreateModelResponse add(CreateModelRequest createModelRequest) {
 		checkIfModelExistsByName(createModelRequest.getName());
+		checkIfBrandNotExistsById(createModelRequest.getBrandId());
 		Model model = this.modelMapperService.forRequest().map(createModelRequest, Model.class);
 		model.setId(UUID.randomUUID().toString());
 
@@ -52,6 +55,7 @@ public class ModelManager implements ModelService {
 	@Override
 	public UpdateModelResponse update(UpdateModelRequest updateModelRequest) {
 		checkIfModelNotExistsById(updateModelRequest.getId());
+		checkIfBrandNotExistsById(updateModelRequest.getBrandId());
 		Model model = this.modelMapperService.forRequest().map(updateModelRequest, Model.class);
 		this.modelRepository.save(model);
 
@@ -99,6 +103,18 @@ public class ModelManager implements ModelService {
 	private void checkIfModelNotExistsByName(String name) {
 		if (!this.modelRepository.findByName(name).isPresent()) {
 			throw new BusinessException("MODEL.NOT EXISTS");
+		}
+	}
+
+	private void checkIfModelNotExistsByBrandId(String brandId) {
+		if (!this.modelRepository.findByBrandId(brandId).isPresent()) {
+			throw new BusinessException("MODEL.BRANDID.NOT EXISTS");
+		}
+	}
+
+	private void checkIfBrandNotExistsById(String brandId) {
+		if (this.brandService.getById(brandId) == null) {
+			throw new BusinessException("BRAND.ID.NOT EXISTS");
 		}
 	}
 

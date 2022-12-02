@@ -8,4 +8,6 @@ import com.kodlamaio.inventoryService.entities.Model;
 
 public interface ModelRepository extends JpaRepository<Model, String> {
 	Optional<Model> findByName(String name);
+
+	Optional<Model>  findByBrandId(String brandId);
 }
