@@ -106,12 +106,6 @@ public class ModelManager implements ModelService {
 		}
 	}
 
-	private void checkIfModelNotExistsByBrandId(String brandId) {
-		if (!this.modelRepository.findByBrandId(brandId).isPresent()) {
-			throw new BusinessException("MODEL.BRANDID.NOT EXISTS");
-		}
-	}
-
 	private void checkIfBrandNotExistsById(String brandId) {
 		if (this.brandService.getById(brandId) == null) {
 			throw new BusinessException("BRAND.ID.NOT EXISTS");

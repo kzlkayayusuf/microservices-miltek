@@ -88,11 +88,21 @@ public class CarManager implements CarService {
 
 	@Override
 	public UpdateCarResponse updateCarState(String carId, int state) {
+		checkIfCarNotExistsById(carId);
 		Car car = this.carRepository.findById(carId).get();
 		car.setState(state);
 		this.carRepository.save(car);
 		UpdateCarResponse updateCarResponse = this.modelMapperService.forResponse().map(car, UpdateCarResponse.class);
 		return updateCarResponse;
+	}
+	
+	@Override
+	public void checkCarAvailable(String carId) {
+		Car car = this.carRepository.findById(carId).get();
+		if (car.getState() == 3) {
+			throw new BusinessException("Car Not Available");
+		}
+
 	}
 
 	private void checkIfCarExistsByPlate(String plate) {
@@ -113,25 +123,12 @@ public class CarManager implements CarService {
 		}
 	}
 
-	private void checkIfCarNotExistsByModelId(String modelId) {
-		if (!this.carRepository.findByModelId(modelId).isPresent()) {
-			throw new BusinessException("CAR.MODELID.NOT EXISTS");
-		}
-	}
-
 	private void checkIfModelNotExistsById(String modelId) {
 		if (this.modelService.getById(modelId) == null) {
 			throw new BusinessException("MODEL.ID.NOT EXISTS");
 		}
 	}
 
-	@Override
-	public void checkCarAvailable(String carId) {
-		Car car = this.carRepository.findById(carId).get();
-		if (car.getState() == 3) {
-			throw new BusinessException("Car Not Available");
-		}
-
-	}
+	
 
 }
