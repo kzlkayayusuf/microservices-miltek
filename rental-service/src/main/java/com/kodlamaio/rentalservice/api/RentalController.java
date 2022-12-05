@@ -2,6 +2,8 @@ package com.kodlamaio.rentalservice.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +21,6 @@ import com.kodlamaio.rentalservice.business.responses.get.GetAllRentalsResponse;
 import com.kodlamaio.rentalservice.business.responses.get.GetRentalResponse;
 import com.kodlamaio.rentalservice.business.responses.update.UpdateRentalResponse;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

@@ -1,0 +1,43 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:7007/eureka
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    prefer-ip-address: true
+server:
+  port: 0
+spring:
+  application:
+    name: note
+  datasource:
+    password: 44525136
+    url: jdbc:postgresql://localhost:5432/rentacarinvoicedb
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
+    show-sql: true
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092
+      group-id: inventory2
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    topic:
+      name: rental_topics2

@@ -9279,3 +9279,279 @@ Caused by: org.codehaus.plexus.util.xml.pull.XmlPullParserException: end tag nam
 2022-12-04 15:14:04,378 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
 2022-12-04 15:14:04,386 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
 2022-12-04 15:14:04,390 [Worker-48: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 15:34:43,440 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 15:34:43,448 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 15:34:43,452 [Worker-50: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 15:35:01,215 [Worker-55: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 15:35:01,221 [Worker-55: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 15:35:01,224 [Worker-55: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 15:35:26,878 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 15:35:26,886 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 15:35:26,890 [Worker-56: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 15:55:53,563 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 15:55:53,574 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 15:55:53,578 [Worker-58: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 15:56:22,596 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 15:56:22,603 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 15:56:22,606 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:02:44,463 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:02:44,470 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:02:44,475 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:03:47,107 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:03:47,113 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:03:47,118 [Worker-57: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:06:44,924 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:06:44,931 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:06:44,935 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:06:50,049 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:06:50,058 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:06:50,064 [Worker-67: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:07:47,500 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:07:47,507 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:07:47,511 [Worker-65: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 16:08:35,813 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 16:08:35,818 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 16:08:35,823 [Worker-63: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 17:00:52,969 [Worker-69: Check for devtools] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier  to /common/target/classes
+2022-12-04 17:01:27,736 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 17:01:28,734 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 17:01:28,757 [Worker-69: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 17:03:11,812 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 17:03:11,833 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 17:03:11,835 [Worker-68: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 18:12:00,305 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:12:00,308 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:12:00,312 [Worker-81: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 18:12:17,635 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:12:17,644 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:12:17,649 [Worker-79: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 18:12:25,598 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:12:25,604 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:12:25,608 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 18:12:34,110 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:12:34,115 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:12:34,119 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 18:17:01,089 [Worker-80: Import Getting Started Content] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Invoice-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\invoice-service\pom.xml.
+2022-12-04 18:17:07,395 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/main/java
+2022-12-04 18:17:07,395 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 18:17:07,406 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 18:17:07,416 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/test/java
+2022-12-04 18:17:09,213 [Worker-80: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 10 sec
+2022-12-04 18:17:09,224 [Worker-80: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-12-04 18:17:09,627 [Worker-80: Import Getting Started Content] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Invoice-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\invoice-service\pom.xml.
+2022-12-04 18:17:10,925 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/main/java
+2022-12-04 18:17:10,925 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 18:17:10,925 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 18:17:10,926 [Worker-80: Import Getting Started Content] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/test/java
+2022-12-04 18:17:11,915 [Worker-80: Import Getting Started Content] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2022-12-04 18:17:12,496 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:17:12,497 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:17:12,500 [Worker-85: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:17:38,257 [Worker-91: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Invoice-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\invoice-service\pom.xml.
+2022-12-04 18:17:39,559 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:17:39,559 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:17:39,565 [Worker-91: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:17:40,815 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:17:40,817 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:17:40,821 [Worker-89: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:25:58,370 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:25:58,408 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:25:58,417 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:27:23,852 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:27:23,854 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:27:23,858 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:27:29,177 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:27:29,185 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:27:29,189 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:27:48,437 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:27:48,458 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:27:48,465 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:28:03,947 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:28:03,952 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:28:03,956 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:28:30,085 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:28:30,090 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:28:30,096 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:28:50,929 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:28:50,935 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:28:50,938 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:29:09,040 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:29:09,048 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:29:09,055 [Worker-95: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:29:25,972 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:29:26,218 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:29:26,342 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:29:38,979 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:29:38,984 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:29:38,988 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:30:11,841 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:30:11,848 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:30:11,852 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:30:27,684 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:30:27,689 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:30:27,693 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:32:07,017 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:32:07,056 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:32:07,062 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:32:17,624 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:32:17,629 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:32:17,633 [Worker-96: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:32:27,982 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:32:27,986 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:32:27,990 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:32:39,550 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:32:39,555 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:32:39,560 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:32:55,424 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:32:55,431 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:32:55,436 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:33:09,773 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:33:09,781 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:33:09,785 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:33:37,560 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:33:37,570 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:33:37,574 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:34:20,017 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:34:20,022 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:34:20,025 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:35:27,392 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:35:27,399 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:35:27,403 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:36:05,299 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:36:05,306 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:36:05,310 [Worker-100: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:36:14,602 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:36:14,607 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:36:14,611 [Worker-94: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:36:26,515 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:36:26,521 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:36:26,524 [Worker-92: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:36:39,233 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:36:39,238 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:36:39,244 [Worker-99: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 18:36:50,387 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 18:36:50,394 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 18:36:50,397 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 19:02:55,050 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:55,059 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:55,064 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\apigateway\src\test\resources
+2022-12-04 19:02:55,297 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:55,299 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:55,303 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\common\src\test\resources
+2022-12-04 19:02:55,873 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:55,880 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:55,884 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\discovery-server\src\test\resources
+2022-12-04 19:02:56,876 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:56,896 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:56,901 [Worker-97: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\inventory-service\src\test\resources
+2022-12-04 19:02:57,390 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:57,392 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:57,396 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 19:02:57,967 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:57,979 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:57,983 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 19:02:58,774 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:02:58,778 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:02:58,782 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 19:03:05,652 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-12-04 19:03:08,192 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:inventory-service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\inventory-service\pom.xml.
+2022-12-04 19:03:08,670 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier  to /common/target/classes
+2022-12-04 19:03:08,760 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:discovery-server:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\discovery-server\pom.xml.
+2022-12-04 19:03:08,950 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Invoice-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\invoice-service\pom.xml.
+2022-12-04 19:03:09,215 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Rental-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\rental-service\pom.xml.
+2022-12-04 19:03:09,293 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier  to /common/target/classes
+2022-12-04 19:03:09,381 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Api-Gateway:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\apigateway\pom.xml.
+2022-12-04 19:03:09,671 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:common:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\common\pom.xml.
+2022-12-04 19:03:09,778 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.kodlamaio:Payment-Service:0.0.1-SNAPSHOT @ D:\casgem\backend\microservices\rentacar\payment-service\pom.xml.
+2022-12-04 19:03:14,012 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /apigateway/src/main/java
+2022-12-04 19:03:14,013 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /apigateway/src/main/resources
+2022-12-04 19:03:14,013 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /apigateway/src/main/resources
+2022-12-04 19:03:14,013 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /apigateway/src/test/java
+2022-12-04 19:03:14,706 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /common/src/main/java
+2022-12-04 19:03:14,707 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /common/src/main/resources
+2022-12-04 19:03:14,708 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /common/src/main/resources
+2022-12-04 19:03:14,708 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /common/src/test/java
+2022-12-04 19:03:14,946 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /discovery-server/src/main/java
+2022-12-04 19:03:14,947 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /discovery-server/src/main/resources
+2022-12-04 19:03:14,947 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /discovery-server/src/main/resources
+2022-12-04 19:03:14,947 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /discovery-server/src/test/java
+2022-12-04 19:03:15,641 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /inventory-service/src/main/java
+2022-12-04 19:03:15,641 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /inventory-service/src/main/resources
+2022-12-04 19:03:15,641 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /inventory-service/src/main/resources
+2022-12-04 19:03:15,642 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /inventory-service/src/test/java
+2022-12-04 19:03:16,463 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/main/java
+2022-12-04 19:03:16,525 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 19:03:16,525 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /invoice-service/src/main/resources
+2022-12-04 19:03:16,526 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /invoice-service/src/test/java
+2022-12-04 19:03:17,840 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /payment-service/src/main/java
+2022-12-04 19:03:17,840 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /payment-service/src/main/resources
+2022-12-04 19:03:17,840 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /payment-service/src/main/resources
+2022-12-04 19:03:17,841 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /payment-service/src/test/java
+2022-12-04 19:03:19,078 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /rental-service/src/main/java
+2022-12-04 19:03:19,078 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /rental-service/src/main/resources
+2022-12-04 19:03:19,079 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /rental-service/src/main/resources
+2022-12-04 19:03:19,079 [Worker-105: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /rental-service/src/test/java
+2022-12-04 19:03:20,937 [Worker-105: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 15 sec
+2022-12-04 19:03:21,277 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:21,312 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:21,318 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\apigateway\src\test\resources
+2022-12-04 19:03:22,840 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:22,842 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:22,844 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\common\src\test\resources
+2022-12-04 19:03:22,956 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:22,957 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:22,960 [Worker-105: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\discovery-server\src\test\resources
+2022-12-04 19:03:24,274 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:24,276 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:24,279 [Worker-104: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\inventory-service\src\test\resources
+2022-12-04 19:03:24,981 [Worker-106: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:24,983 [Worker-106: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:24,986 [Worker-106: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-04 19:03:25,569 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:25,571 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:25,574 [Worker-103: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-04 19:03:26,317 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-04 19:03:26,320 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-04 19:03:26,323 [Worker-107: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-04 19:07:50,931 [Worker-97: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:07:51,244 [Worker-97: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:07:51,550 [Worker-97: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:08:22,814 [Worker-113: Launching rental-service - RentalServiceApplication] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:08:23,130 [Worker-113: Launching rental-service - RentalServiceApplication] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:08:23,476 [Worker-113: Launching rental-service - RentalServiceApplication] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:14:29,272 [Worker-116: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:14:29,749 [Worker-116: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-04 19:14:30,234 [Worker-116: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 08:47:45,356 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-12-05 09:14:05,883 [Worker-13: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier  to /common/target/classes
+2022-12-05 09:14:06,911 [Worker-13: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 09:14:07,356 [Worker-13: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 09:14:07,754 [Worker-13: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 09:22:54,705 [Worker-24: reload maven project] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier  to /common/target/classes
+2022-12-05 09:26:20,388 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 09:26:20,454 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 09:26:20,461 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-05 14:34:28,662 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:34:28,732 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:34:28,739 [Worker-37: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\apigateway\src\test\resources
+2022-12-05 14:35:14,946 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:35:14,949 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:35:14,958 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\common\src\test\resources
+2022-12-05 14:36:06,116 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:36:06,119 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:36:06,131 [Worker-43: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\discovery-server\src\test\resources
+2022-12-05 14:42:32,768 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:42:32,777 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:42:32,783 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\inventory-service\src\test\resources
+2022-12-05 14:43:07,984 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:43:07,990 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:43:08,000 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\invoice-service\src\test\resources
+2022-12-05 14:43:20,953 [Worker-46: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:43:20,956 [Worker-46: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:43:20,961 [Worker-46: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\payment-service\src\test\resources
+2022-12-05 14:43:38,127 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource
+2022-12-05 14:43:38,129 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource
+2022-12-05 14:43:38,134 [Worker-7: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\casgem\backend\microservices\rentacar\rental-service\src\test\resources
+2022-12-05 15:18:00,060 [Worker-55: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 15:18:00,370 [Worker-55: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes
+2022-12-05 15:18:00,670 [Worker-55: Launching inventory-service - InventoryServiceApplication (1)] INFO  o.e.m.c.i.p.WorkspaceClassifierResolverManager - Resolving P/common: com.kodlamaio:common:0.0.1-SNAPSHOT with classifier null to /common/target/classes

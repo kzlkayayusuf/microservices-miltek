@@ -2,6 +2,8 @@ package com.kodlamaio.inventoryService.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +21,6 @@ import com.kodlamaio.inventoryService.business.responses.get.GetAllBrandsRespons
 import com.kodlamaio.inventoryService.business.responses.get.GetBrandResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateBrandResponse;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -52,7 +53,7 @@ public class BrandsController {
 	public GetBrandResponse getByName(@PathVariable String name) {
 		return brandService.getByName(name);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable String id) {
 		brandService.deleteById(id);

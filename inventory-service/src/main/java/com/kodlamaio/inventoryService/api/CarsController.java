@@ -2,6 +2,8 @@ package com.kodlamaio.inventoryService.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +21,6 @@ import com.kodlamaio.inventoryService.business.responses.get.GetAllCarsResponse;
 import com.kodlamaio.inventoryService.business.responses.get.GetCarResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateCarResponse;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -57,7 +58,7 @@ public class CarsController {
 	public void deleteById(@PathVariable String id) {
 		carService.deleteById(id);
 	}
-	
+
 	@GetMapping("/checkCarAvailable/{id}")
 	void checkCarAvailable(@PathVariable String id) {
 		this.carService.checkCarAvailable(id);

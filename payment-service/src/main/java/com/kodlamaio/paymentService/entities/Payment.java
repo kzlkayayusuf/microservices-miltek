@@ -1,9 +1,10 @@
 package com.kodlamaio.paymentService.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class Payment {
 	private double cardBalance;
 
 	@Column(name = "status")
-	private int status;  //0-Red,1-Onay
+	private int status; // 0-Red,1-Onay
 
 	@Column(name = "totalPrice")
 	private double totalPrice;
