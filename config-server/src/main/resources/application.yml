@@ -1,0 +1,13 @@
+server:
+    port: 7777
+spring:
+    application:
+        name: config-server
+    cloud:
+        config:
+            server:
+                default-label: master
+                git: 
+                    uri: https://github.com/kzlkayayusuf/microservice-config-server
+    profiles:
+        active: dev

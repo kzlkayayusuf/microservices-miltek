@@ -1,21 +1,8 @@
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:7007/eureka
-  instance:
-    prefer-ip-address: true
-server:
-  port: 7017
 spring:
-  application:
-    name: gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-  zipkin:
-    base-url: http://localhost:9411
+    application:
+        name: gateway
+    cloud:
+        config:
+            profile: dev
+    config:
+        import: configserver:http://localhost:7777
