@@ -27,5 +27,5 @@ public interface CarService {
 
 	UpdateCarResponse updateCarState(String carId, int state);
 
-	void checkCarAvailable(String carId);
+	Result checkCarAvailable(String carId);
 }

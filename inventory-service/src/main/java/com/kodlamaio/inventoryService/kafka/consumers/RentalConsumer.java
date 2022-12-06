@@ -27,7 +27,7 @@ public class RentalConsumer {
 	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "created_rental")
 	public void consume(RentalCreatedEvent event) {
 		LOGGER.info(String.format("Order event received in stock service => %s", event.toString()));
-		carService.updateCarState(event.getCarId(), 3);
+		carService.updateCarState(event.getCarId(), 3); //1-available 2-under maintenance 3-rented
 		LOGGER.info(event.getCarId() + " state changed");
 		CarRentalCreatedEvent carRentalCreatedEvent = new CarRentalCreatedEvent();
 		carRentalCreatedEvent.setCarId(event.getCarId());

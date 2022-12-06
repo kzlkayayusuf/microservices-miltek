@@ -15,7 +15,7 @@ import com.kodlamaio.common.utilities.results.SuccessDataResult;
 import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.inventoryService.business.abstracts.BrandService;
 import com.kodlamaio.inventoryService.business.abstracts.ModelService;
-import com.kodlamaio.inventoryService.business.constans.Messages;
+import com.kodlamaio.inventoryService.business.constants.Messages;
 import com.kodlamaio.inventoryService.business.requests.create.CreateModelRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateModelRequest;
 import com.kodlamaio.inventoryService.business.responses.create.CreateModelResponse;
@@ -100,7 +100,6 @@ public class ModelManager implements ModelService {
 		ModelUpdatedEvent event = new ModelUpdatedEvent();
 		event.setModelId(id);
 		event.setModelName(name);
-		;
 		event.setBrandId(brandId);
 		producer.sendMessage(event);
 	}

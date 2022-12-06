@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
 import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
-import com.kodlamaio.paymentService.business.responses.get.GetPaymentResponse;
 import com.kodlamaio.paymentService.business.responses.update.UpdatePaymentResponse;
 
 import lombok.AllArgsConstructor;
@@ -33,36 +35,61 @@ public class PaymentsController {
 	private final PaymentService paymentService;
 
 	@GetMapping
-	public List<GetAllPaymentsResponse> getAll() {
-		return paymentService.getAll();
+	public ResponseEntity<?> getAll() {
+		DataResult<List<GetAllPaymentsResponse>> result = paymentService.getAll();
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 
 	@GetMapping("/{id}")
-	public GetPaymentResponse getById(@PathVariable String id) {
-		return paymentService.getById(id);
+	public ResponseEntity<?> getById(@PathVariable String id) {
+		Result result = paymentService.getById(id);
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 
 	@PostMapping
-	public CreatePaymentResponse add(@Valid @RequestBody CreatePaymentRequest request) {
-		return paymentService.add(request);
+	public ResponseEntity<?> add(@Valid @RequestBody CreatePaymentRequest request) {
+		DataResult<CreatePaymentResponse> result = paymentService.add(request);
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 
 	@PutMapping("/{id}")
-	public UpdatePaymentResponse update(@Valid @RequestBody UpdatePaymentRequest request, @PathVariable String id) {
-		return paymentService.update(request, id);
+	public ResponseEntity<?> update(@Valid @RequestBody UpdatePaymentRequest request) {
+		DataResult<UpdatePaymentResponse> result = paymentService.update(request);
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable String id) {
-		paymentService.delete(id);
+	public ResponseEntity<?> deleteById(@PathVariable String id) {
+		Result result = paymentService.deleteById(id);
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 
 	@PostMapping("/check")
-	public void checkIfPaymentSuccessful(@RequestParam String cardNumber, @RequestParam String fullName,
+	public ResponseEntity<?> checkIfPaymentSuccessful(@RequestParam String cardNumber, @RequestParam String fullName,
 			@RequestParam int cardExpirationYear, @RequestParam int cardExpirationMonth, @RequestParam String cardCvv,
 			@RequestParam double price) {
 		GetPaymentRequest request = new GetPaymentRequest(cardNumber, fullName, cardExpirationYear, cardExpirationMonth,
 				cardCvv, price);
-		paymentService.checkIfPaymentSuccessful(request);
+		Result result = paymentService.checkIfPaymentSuccessful(request);
+		if (result.isSuccess()) {
+			return ResponseEntity.ok(result);
+		}
+		return ResponseEntity.badRequest().body(result);
 	}
 }

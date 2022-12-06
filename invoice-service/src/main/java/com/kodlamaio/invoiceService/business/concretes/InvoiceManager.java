@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.common.utilities.results.SuccessDataResult;
+import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.invoiceService.business.abstracts.InvoiceService;
+import com.kodlamaio.invoiceService.business.constants.Messages;
 import com.kodlamaio.invoiceService.business.requests.create.CreateInvoiceRequest;
 import com.kodlamaio.invoiceService.business.requests.update.UpdateInvoiceRequest;
 import com.kodlamaio.invoiceService.business.responses.create.CreateInvoiceResponse;
@@ -27,54 +32,55 @@ public class InvoiceManager implements InvoiceService {
 	private final ModelMapperService mapperService;
 
 	@Override
-	public List<GetAllInvoicesResponse> getAll() {
+	public DataResult<List<GetAllInvoicesResponse>> getAll() {
 		List<Invoice> invoices = invoiceRepository.findAll();
 		List<GetAllInvoicesResponse> response = invoices.stream()
 				.map(invoice -> mapperService.forResponse().map(invoice, GetAllInvoicesResponse.class)).toList();
 
-		return response;
+		return new SuccessDataResult<List<GetAllInvoicesResponse>>(response, Messages.InvoiceListed);
 	}
 
 	@Override
-	public GetInvoiceResponse getById(String id) {
+	public DataResult<GetInvoiceResponse> getById(String id) {
 		checkIfInvoiceExists(id);
 		Invoice invoice = invoiceRepository.findById(id).orElseThrow();
 		GetInvoiceResponse response = mapperService.forResponse().map(invoice, GetInvoiceResponse.class);
 
-		return response;
+		return new SuccessDataResult<GetInvoiceResponse>(response, Messages.InvoiceListedById);
 	}
 
 	@Override
-	public CreateInvoiceResponse add(CreateInvoiceRequest request) {
+	public DataResult<CreateInvoiceResponse> add(CreateInvoiceRequest request) {
 		Invoice invoice = mapperService.forRequest().map(request, Invoice.class);
 		invoice.setId(UUID.randomUUID().toString());
 		invoiceRepository.save(invoice);
 		CreateInvoiceResponse response = mapperService.forResponse().map(invoice, CreateInvoiceResponse.class);
 
-		return response;
+		return new SuccessDataResult<CreateInvoiceResponse>(response, Messages.InvoiceCreated);
 	}
 
 	@Override
-	public UpdateInvoiceResponse update(UpdateInvoiceRequest request, String id) {
-		checkIfInvoiceExists(id);
+	public DataResult<UpdateInvoiceResponse> update(UpdateInvoiceRequest request) {
+		checkIfInvoiceExists(request.getId());
 		Invoice invoice = mapperService.forRequest().map(request, Invoice.class);
-		invoice.setId(id);
 		invoiceRepository.save(invoice);
 		UpdateInvoiceResponse response = mapperService.forResponse().map(invoice, UpdateInvoiceResponse.class);
 
-		return response;
+		return new SuccessDataResult<UpdateInvoiceResponse>(response, Messages.InvoiceUpdated);
 	}
 
 	@Override
-	public void deleteById(String id) {
+	public Result deleteById(String id) {
 		checkIfInvoiceExists(id);
 		invoiceRepository.deleteById(id);
+		return new SuccessResult(Messages.InvoiceDeleted);
 	}
 
 	@Override
-	public void createInvoice(Invoice invoice) {
+	public Result createInvoice(Invoice invoice) {
 		invoice.setId(UUID.randomUUID().toString());
 		invoiceRepository.save(invoice);
+		return new SuccessResult(Messages.InvoiceCreated);
 	}
 
 	private void checkIfInvoiceExists(String id) {

@@ -2,6 +2,8 @@ package com.kodlamaio.invoiceService.business.abstracts;
 
 import java.util.List;
 
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.invoiceService.business.requests.create.CreateInvoiceRequest;
 import com.kodlamaio.invoiceService.business.requests.update.UpdateInvoiceRequest;
 import com.kodlamaio.invoiceService.business.responses.create.CreateInvoiceResponse;
@@ -12,15 +14,15 @@ import com.kodlamaio.invoiceService.entities.Invoice;
 
 public interface InvoiceService {
 
-	List<GetAllInvoicesResponse> getAll();
+	DataResult<List<GetAllInvoicesResponse>> getAll();
 
-	GetInvoiceResponse getById(String id);
+	DataResult<GetInvoiceResponse> getById(String id);
 
-	CreateInvoiceResponse add(CreateInvoiceRequest request);
+	DataResult<CreateInvoiceResponse> add(CreateInvoiceRequest request);
 
-	UpdateInvoiceResponse update(UpdateInvoiceRequest request, String id);
+	DataResult<UpdateInvoiceResponse> update(UpdateInvoiceRequest request);
 
-	void deleteById(String id);
+	Result deleteById(String id);
 
-	void createInvoice(Invoice invoice);
+	Result createInvoice(Invoice invoice);
 }

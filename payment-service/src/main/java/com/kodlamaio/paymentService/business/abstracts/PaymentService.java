@@ -2,6 +2,8 @@ package com.kodlamaio.paymentService.business.abstracts;
 
 import java.util.List;
 
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
 import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
@@ -11,15 +13,16 @@ import com.kodlamaio.paymentService.business.responses.get.GetPaymentResponse;
 import com.kodlamaio.paymentService.business.responses.update.UpdatePaymentResponse;
 
 public interface PaymentService {
-	List<GetAllPaymentsResponse> getAll();
 
-	GetPaymentResponse getById(String id);
+	DataResult<List<GetAllPaymentsResponse>> getAll();
 
-	CreatePaymentResponse add(CreatePaymentRequest request);
+	DataResult<GetPaymentResponse> getById(String id);
 
-	UpdatePaymentResponse update(UpdatePaymentRequest request, String id);
+	DataResult<CreatePaymentResponse> add(CreatePaymentRequest request);
 
-	void delete(String id);
+	DataResult<UpdatePaymentResponse> update(UpdatePaymentRequest request);
 
-	void checkIfPaymentSuccessful(GetPaymentRequest request);
+	Result deleteById(String id);
+
+	Result checkIfPaymentSuccessful(GetPaymentRequest request);
 }

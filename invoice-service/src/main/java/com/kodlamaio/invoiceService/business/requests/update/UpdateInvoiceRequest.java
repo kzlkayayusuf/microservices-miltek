@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateInvoiceRequest {
 
+	@NotNull
+	@NotBlank
+	private String id;
 	@NotBlank
 	private String carId;
 	@NotBlank

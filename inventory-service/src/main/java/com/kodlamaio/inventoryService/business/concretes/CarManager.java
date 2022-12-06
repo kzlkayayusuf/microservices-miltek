@@ -16,7 +16,7 @@ import com.kodlamaio.common.utilities.results.SuccessDataResult;
 import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.inventoryService.business.abstracts.CarService;
 import com.kodlamaio.inventoryService.business.abstracts.ModelService;
-import com.kodlamaio.inventoryService.business.constans.Messages;
+import com.kodlamaio.inventoryService.business.constants.Messages;
 import com.kodlamaio.inventoryService.business.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateCarRequest;
 import com.kodlamaio.inventoryService.business.responses.create.CreateCarResponse;
@@ -112,11 +112,13 @@ public class CarManager implements CarService {
 	}
 
 	@Override
-	public void checkCarAvailable(String carId) {
+	public Result checkCarAvailable(String carId) {
+		checkIfCarNotExistsById(carId);
 		Car car = this.carRepository.findById(carId).get();
 		if (car.getState() != 1) {
 			throw new BusinessException("Car Not Available");
 		}
+		return new SuccessResult(Messages.CarAvailable);
 
 	}
 

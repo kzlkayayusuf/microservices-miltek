@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class CarDeletedEvent {
 
 	private String carId;
+	private String message;
 }

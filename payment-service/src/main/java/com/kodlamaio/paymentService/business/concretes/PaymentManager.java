@@ -7,8 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.common.utilities.results.SuccessDataResult;
+import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.abstracts.PosService;
+import com.kodlamaio.paymentService.business.constants.Messages;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
 import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
@@ -29,60 +34,60 @@ public class PaymentManager implements PaymentService {
 	private final PosService posService;
 
 	@Override
-	public List<GetAllPaymentsResponse> getAll() {
+	public DataResult<List<GetAllPaymentsResponse>> getAll() {
 		List<Payment> payments = paymentRepository.findAll();
 		List<GetAllPaymentsResponse> response = payments.stream()
 				.map(payment -> modelMapperService.forResponse().map(payment, GetAllPaymentsResponse.class)).toList();
 
-		return response;
+		return new SuccessDataResult<List<GetAllPaymentsResponse>>(response, Messages.PaymentListed);
 	}
 
 	@Override
-	public GetPaymentResponse getById(String id) {
+	public DataResult<GetPaymentResponse> getById(String id) {
 		checkIfPaymentExists(id);
 		Payment payment = paymentRepository.findById(id).orElseThrow();
 		GetPaymentResponse response = modelMapperService.forResponse().map(payment, GetPaymentResponse.class);
 
-		return response;
+		return new SuccessDataResult<GetPaymentResponse>(response);
 	}
 
 	@Override
-	public CreatePaymentResponse add(CreatePaymentRequest request) {
+	public DataResult<CreatePaymentResponse> add(CreatePaymentRequest request) {
 		checkIfCardNumberExists(request.getCardNumber());
 		Payment payment = modelMapperService.forRequest().map(request, Payment.class);
 		payment.setId(UUID.randomUUID().toString());
 		paymentRepository.save(payment);
 		CreatePaymentResponse response = modelMapperService.forResponse().map(payment, CreatePaymentResponse.class);
 
-		return response;
+		return new SuccessDataResult<CreatePaymentResponse>(response);
 	}
 
 	@Override
-	public UpdatePaymentResponse update(UpdatePaymentRequest request, String id) {
-		checkIfPaymentExists(id);
+	public DataResult<UpdatePaymentResponse> update(UpdatePaymentRequest request) {
+		checkIfPaymentExists(request.getId());
 		Payment payment = modelMapperService.forRequest().map(request, Payment.class);
-		payment.setId(id);
 		paymentRepository.save(payment);
 		UpdatePaymentResponse response = modelMapperService.forResponse().map(payment, UpdatePaymentResponse.class);
 
-		return response;
+		return new SuccessDataResult<UpdatePaymentResponse>(response);
 	}
 
 	@Override
-	public void delete(String id) {
+	public Result deleteById(String id) {
 		checkIfPaymentExists(id);
 		paymentRepository.deleteById(id);
+		return new SuccessResult(Messages.PaymentDeleted);
 	}
 
 	@Override
-	public void checkIfPaymentSuccessful(GetPaymentRequest request) {
+	public Result checkIfPaymentSuccessful(GetPaymentRequest request) {
 		checkPayment(request);
+		return new SuccessResult(Messages.PaymentSuccessful);
 	}
 
 	private void checkPayment(GetPaymentRequest request) {
-		if (!paymentRepository.existsByCardNumberAndFullNameAndCardExpirationYearAndCardExpirationMonthAndCardCvv(
-				request.getCardNumber(), request.getFullName(), request.getCardExpirationYear(),
-				request.getCardExpirationMonth(), request.getCardCvv())) {
+		if (!paymentRepository.existsByCardInformation(request.getCardNumber(), request.getFullName(),
+				request.getCardExpirationYear(), request.getCardExpirationMonth(), request.getCardCvv())) {
 			throw new BusinessException("NOT_A_VALID_PAYMENT!");
 		} else {
 			double balance = paymentRepository.findByCardNumber(request.getCardNumber()).getBalance();

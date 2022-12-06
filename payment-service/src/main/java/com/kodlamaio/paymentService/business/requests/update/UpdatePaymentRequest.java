@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdatePaymentRequest {
 
+	@NotBlank
+	@NotNull
+	private String id;
 	@NotBlank(message = "Card number is required")
 	@Length(min = 16, max = 16, message = "Card number must be 16 characters long")
 	private String cardNumber;

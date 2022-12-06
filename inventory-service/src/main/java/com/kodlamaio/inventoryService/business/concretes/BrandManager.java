@@ -14,7 +14,7 @@ import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.common.utilities.results.SuccessDataResult;
 import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.inventoryService.business.abstracts.BrandService;
-import com.kodlamaio.inventoryService.business.constans.Messages;
+import com.kodlamaio.inventoryService.business.constants.Messages;
 import com.kodlamaio.inventoryService.business.requests.create.CreateBrandRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateBrandRequest;
 import com.kodlamaio.inventoryService.business.responses.create.CreateBrandResponse;

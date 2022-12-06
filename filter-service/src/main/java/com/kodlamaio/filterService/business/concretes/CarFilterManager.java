@@ -27,82 +27,82 @@ public class CarFilterManager implements CarFilterService {
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getAll() {
 		List<CarFilter> filters = carFilterRepository.findAll();
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getByBrandName(String brandName) {
 		List<CarFilter> filters = carFilterRepository.findByBrandNameIgnoreCase(brandName);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterBrandNameListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterBrandNameListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getByModelName(String modelName) {
 		List<CarFilter> filters = carFilterRepository.findByModelNameIgnoreCase(modelName);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterModelNameListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterModelNameListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getByPlate(String plate) {
 		List<CarFilter> filters = carFilterRepository.findByPlateIgnoreCase(plate);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterPlateListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterPlateListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> searchByPlate(String plate) {
 		List<CarFilter> filters = carFilterRepository.findByPlateContainingIgnoreCase(plate);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterSearchPlateListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterSearchPlateListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> searchByBrandName(String brandName) {
 		List<CarFilter> filters = carFilterRepository.findByBrandNameContainingIgnoreCase(brandName);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterSearchBrandNameListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterSearchBrandNameListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> searchByModelName(String modelName) {
 		List<CarFilter> filters = carFilterRepository.findByModelNameContainingIgnoreCase(modelName);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterSearchModelNameListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterSearchModelNameListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getByModelYear(int modelYear) {
 		List<CarFilter> filters = carFilterRepository.findByModelYear(modelYear);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterModelYearListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterModelYearListed);
 	}
 
 	@Override
 	public DataResult<List<GetAllFiltersResponse>> getByState(int state) {
 		List<CarFilter> filters = carFilterRepository.findByState(state);
-		List<GetAllFiltersResponse> responses = filters.stream()
+		List<GetAllFiltersResponse> response = filters.stream()
 				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(responses, Messages.FilterStateListed);
+		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterStateListed);
 	}
 
 	@Override
