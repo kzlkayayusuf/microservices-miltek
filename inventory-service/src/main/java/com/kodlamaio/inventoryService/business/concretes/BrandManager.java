@@ -2,13 +2,19 @@ package com.kodlamaio.inventoryService.business.concretes;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.kodlamaio.common.events.brands.BrandDeleteEvent;
+import com.kodlamaio.common.events.brands.BrandUpdateEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.common.utilities.results.SuccessDataResult;
+import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.inventoryService.business.abstracts.BrandService;
+import com.kodlamaio.inventoryService.business.constans.Messages;
 import com.kodlamaio.inventoryService.business.requests.create.CreateBrandRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateBrandRequest;
 import com.kodlamaio.inventoryService.business.responses.create.CreateBrandResponse;
@@ -17,6 +23,8 @@ import com.kodlamaio.inventoryService.business.responses.get.GetBrandResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateBrandResponse;
 import com.kodlamaio.inventoryService.dataAccess.BrandRepository;
 import com.kodlamaio.inventoryService.entities.Brand;
+import com.kodlamaio.inventoryService.kafka.producers.BrandDeletedProducer;
+import com.kodlamaio.inventoryService.kafka.producers.BrandUpdatedProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -26,64 +34,75 @@ public class BrandManager implements BrandService {
 
 	private BrandRepository brandRepository;
 	private ModelMapperService modelMapperService;
+	private BrandDeletedProducer brandDeletedProducer;
+	private BrandUpdatedProducer brandUpdatedProducer;
 
 	@Override
-	public List<GetAllBrandsResponse> getAll() {
-		List<Brand> brands = this.brandRepository.findAll();
-
-		List<GetAllBrandsResponse> response = brands.stream()
-				.map(brand -> this.modelMapperService.forResponse().map(brand, GetAllBrandsResponse.class))
-				.collect(Collectors.toList());
-
-		return response;
+	public DataResult<List<GetAllBrandsResponse>> getAll() {
+		List<Brand> brands = brandRepository.findAll();
+		List<GetAllBrandsResponse> responses = brands.stream()
+				.map(brand -> modelMapperService.forResponse().map(brand, GetAllBrandsResponse.class)).toList();
+		return new SuccessDataResult<List<GetAllBrandsResponse>>(responses, Messages.BrandListed);
 	}
 
 	@Override
-	public CreateBrandResponse add(CreateBrandRequest createBrandRequest) {
+	public DataResult<CreateBrandResponse> add(CreateBrandRequest createBrandRequest) {
 		checkIfBrandExistsByName(createBrandRequest.getName());
-		Brand brand = this.modelMapperService.forRequest().map(createBrandRequest, Brand.class);
+		Brand brand = modelMapperService.forRequest().map(createBrandRequest, Brand.class);
 		brand.setId(UUID.randomUUID().toString());
+		brandRepository.save(brand);
 
-		this.brandRepository.save(brand);
-
-		CreateBrandResponse createBrandResponse = this.modelMapperService.forResponse().map(brand,
+		CreateBrandResponse createBrandResponse = modelMapperService.forResponse().map(brand,
 				CreateBrandResponse.class);
-		return createBrandResponse;
+		return new SuccessDataResult<CreateBrandResponse>(createBrandResponse, Messages.BrandAdded);
 	}
 
 	@Override
-	public UpdateBrandResponse update(UpdateBrandRequest updateBrandRequest) {
+	public DataResult<UpdateBrandResponse> update(UpdateBrandRequest updateBrandRequest) {
 		checkIfBrandNotExistsById(updateBrandRequest.getId());
-		Brand brand = this.modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
-		this.brandRepository.save(brand);
+		Brand brand = modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
+		brandRepository.save(brand);
 
-		UpdateBrandResponse updateBrandResponse = this.modelMapperService.forResponse().map(brand,
-				UpdateBrandResponse.class);
+		GetBrandResponse result = getById(brand.getId()).getData();
+		BrandUpdateEvent brandUpdateEvent = new BrandUpdateEvent();
+		brandUpdateEvent.setCarBrandId(result.getId());
+		brandUpdateEvent.setCarBrandName(result.getName());
+		brandUpdateEvent.setMessage(Messages.BrandUpdated);
+		brandUpdatedProducer.sendMessage(brandUpdateEvent);
 
-		return updateBrandResponse;
+		UpdateBrandResponse response = modelMapperService.forResponse().map(brand, UpdateBrandResponse.class);
+		return new SuccessDataResult<UpdateBrandResponse>(response, Messages.BrandUpdated);
 	}
 
 	@Override
-	public GetBrandResponse getById(String id) {
+	public DataResult<GetBrandResponse> getById(String id) {
 		checkIfBrandNotExistsById(id);
-		Brand brand = this.brandRepository.findById(id).get();
-		GetBrandResponse brandResponse = this.modelMapperService.forResponse().map(brand, GetBrandResponse.class);
-		return brandResponse;
+		Brand brand = brandRepository.findById(id).get();
+		GetBrandResponse response = modelMapperService.forResponse().map(brand, GetBrandResponse.class);
+		return new SuccessDataResult<GetBrandResponse>(response);
 	}
 
 	@Override
-	public GetBrandResponse getByName(String name) {
+	public DataResult<List<GetAllBrandsResponse>> getByName(String name) {
 		checkIfBrandNotExistsByName(name);
-		Brand brand = this.brandRepository.findByName(name).get();
-		GetBrandResponse brandResponse = this.modelMapperService.forResponse().map(brand, GetBrandResponse.class);
-		return brandResponse;
+		List<Brand> brands = brandRepository.findByName(name).get();
+		List<GetAllBrandsResponse> responses = brands.stream()
+				.map(brand -> modelMapperService.forResponse().map(brand, GetAllBrandsResponse.class)).toList();
+		return new SuccessDataResult<List<GetAllBrandsResponse>>(responses, Messages.BrandListed);
 	}
-	
+
 	@Override
-	public void deleteById(String id) {
+	public Result deleteById(String id) {
 		checkIfBrandNotExistsById(id);
 		this.brandRepository.deleteById(id);
-		
+
+		BrandDeleteEvent brandDeleteEvent = new BrandDeleteEvent();
+		brandDeleteEvent.setBrandId(id);
+		brandDeleteEvent.setMessage(Messages.BrandDeleted);
+		brandDeletedProducer.sendMessage(brandDeleteEvent);
+
+		return new SuccessResult(Messages.BrandDeleted);
+
 	}
 
 	private void checkIfBrandExistsByName(String name) {
@@ -103,7 +122,5 @@ public class BrandManager implements BrandService {
 			throw new BusinessException("BRAND.NOT EXISTS");
 		}
 	}
-
-	
 
 }

@@ -2,16 +2,20 @@ package com.kodlamaio.rentalservice.business.concretes;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.kodlamaio.common.events.PaymentCreatedEvent;
-import com.kodlamaio.common.events.RentalCreatedEvent;
-import com.kodlamaio.common.events.RentalUpdatedEvent;
+import com.kodlamaio.common.events.rentals.RentalCreatedEvent;
+import com.kodlamaio.common.events.rentals.RentalUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.common.utilities.results.SuccessDataResult;
+import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;
+import com.kodlamaio.rentalservice.business.constants.Messages;
 import com.kodlamaio.rentalservice.business.requests.create.CreateRentalRequest;
 import com.kodlamaio.rentalservice.business.requests.update.UpdateRentalRequest;
 import com.kodlamaio.rentalservice.business.responses.create.CreateRentalResponse;
@@ -39,29 +43,27 @@ public class RentalManager implements RentalService {
 	private PaymentClient paymentClient;
 
 	@Override
-	public List<GetAllRentalsResponse> getAll() {
-		List<Rental> rentals = this.rentalRepository.findAll();
+	public DataResult<List<GetAllRentalsResponse>> getAll() {
+		List<Rental> rentals = rentalRepository.findAll();
+		List<GetAllRentalsResponse> responses = rentals.stream()
+				.map(rental -> modelMapperService.forResponse().map(rental, GetAllRentalsResponse.class)).toList();
+		return new SuccessDataResult<List<GetAllRentalsResponse>>(responses, Messages.RentalListed);
 
-		List<GetAllRentalsResponse> response = rentals.stream()
-				.map(rental -> this.modelMapperService.forResponse().map(rental, GetAllRentalsResponse.class))
-				.collect(Collectors.toList());
-
-		return response;
 	}
 
 	@Override
-	public CreateRentalResponse add(CreateRentalRequest createRentalRequest) {
+	public DataResult<CreateRentalResponse> add(CreateRentalRequest createRentalRequest) {
 		carClient.checkCarAvailable(createRentalRequest.getCarId());
 		checkIfRentalExistsByCarId(createRentalRequest.getCarId());
 
-		Rental rental = this.modelMapperService.forRequest().map(createRentalRequest, Rental.class);
+		Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 		rental.setId(UUID.randomUUID().toString());
 		rental.setTotalPrice(createRentalRequest.getDailyPrice() * createRentalRequest.getRentedForDays());
 		Rental rentalCreated = this.rentalRepository.save(rental);
 
 		RentalCreatedEvent rentalCreatedEvent = new RentalCreatedEvent();
 		rentalCreatedEvent.setCarId(rentalCreated.getCarId());
-		rentalCreatedEvent.setMessage("Rental Created");
+		rentalCreatedEvent.setMessage(Messages.RentalCreated);
 
 		PaymentCreatedEvent paymentCreatedEvent = new PaymentCreatedEvent();
 		paymentCreatedEvent.setRentalId(rentalCreated.getId());
@@ -75,17 +77,18 @@ public class RentalManager implements RentalService {
 		rentalRepository.save(rental);
 		rentalCreatedProducer.sendMessage(rentalCreatedEvent);
 
-		CreateRentalResponse createRentalResponse = this.modelMapperService.forResponse().map(rental,
-				CreateRentalResponse.class);
-		return createRentalResponse;
+		CreateRentalResponse response = modelMapperService.forResponse().map(rental, CreateRentalResponse.class);
+		return new SuccessDataResult<CreateRentalResponse>(response, Messages.RentalCreated);
+
 	}
 
 	@Override
-	public UpdateRentalResponse update(UpdateRentalRequest updateRentalRequest) {
+	public DataResult<UpdateRentalResponse> update(UpdateRentalRequest updateRentalRequest) {
+		carClient.checkCarAvailable(updateRentalRequest.getCarId());
 		checkIfRentalNotExistsById(updateRentalRequest.getId());
 
-		Rental rental = this.rentalRepository.findById(updateRentalRequest.getId()).get();
 		RentalUpdatedEvent rentalUpdatedEvent = new RentalUpdatedEvent();
+		Rental rental = rentalRepository.findById(updateRentalRequest.getId()).get();
 		rentalUpdatedEvent.setOldCarId(rental.getCarId());
 
 		rental.setCarId(updateRentalRequest.getCarId());
@@ -96,26 +99,27 @@ public class RentalManager implements RentalService {
 		Rental updatedRental = rentalRepository.save(rental);
 
 		rentalUpdatedEvent.setNewCarId(updatedRental.getCarId());
-		rentalUpdatedEvent.setMessage("Rental Updated");
+		rentalUpdatedEvent.setMessage(Messages.RentalUpdated);
 		rentalUpdatedProducer.sendMessage(rentalUpdatedEvent);
 
-		UpdateRentalResponse updateRentalResponse = this.modelMapperService.forResponse().map(updatedRental,
-				UpdateRentalResponse.class);
-		return updateRentalResponse;
+		UpdateRentalResponse response = modelMapperService.forResponse().map(rental, UpdateRentalResponse.class);
+		return new SuccessDataResult<UpdateRentalResponse>(response, Messages.RentalUpdated);
 	}
 
 	@Override
-	public GetRentalResponse getById(String id) {
+	public DataResult<GetRentalResponse> getById(String id) {
 		checkIfRentalNotExistsById(id);
 		Rental rental = this.rentalRepository.findById(id).get();
-		GetRentalResponse rentalResponse = this.modelMapperService.forResponse().map(rental, GetRentalResponse.class);
-		return rentalResponse;
+		GetRentalResponse response = modelMapperService.forResponse().map(rental, GetRentalResponse.class);
+		return new SuccessDataResult<GetRentalResponse>(response);
 	}
 
 	@Override
-	public void deleteById(String id) {
+	public Result deleteById(String id) {
 		checkIfRentalNotExistsById(id);
 		this.rentalRepository.deleteById(id);
+
+		return new SuccessResult(Messages.RentalDeleted);
 
 	}
 

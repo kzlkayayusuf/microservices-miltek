@@ -11,4 +11,5 @@ public class GetModelResponse {
 	private String id;
 	private String name;
 	private String brandName;
+	private String brandId;
 }

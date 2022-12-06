@@ -2,14 +2,20 @@ package com.kodlamaio.inventoryService.business.concretes;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.kodlamaio.common.events.models.ModelDeletedEvent;
+import com.kodlamaio.common.events.models.ModelUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.common.utilities.results.DataResult;
+import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.common.utilities.results.SuccessDataResult;
+import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.inventoryService.business.abstracts.BrandService;
 import com.kodlamaio.inventoryService.business.abstracts.ModelService;
+import com.kodlamaio.inventoryService.business.constans.Messages;
 import com.kodlamaio.inventoryService.business.requests.create.CreateModelRequest;
 import com.kodlamaio.inventoryService.business.requests.update.UpdateModelRequest;
 import com.kodlamaio.inventoryService.business.responses.create.CreateModelResponse;
@@ -18,6 +24,8 @@ import com.kodlamaio.inventoryService.business.responses.get.GetModelResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateModelResponse;
 import com.kodlamaio.inventoryService.dataAccess.ModelRepository;
 import com.kodlamaio.inventoryService.entities.Model;
+import com.kodlamaio.inventoryService.kafka.producers.ModelDeletedProducer;
+import com.kodlamaio.inventoryService.kafka.producers.ModelUpdatedProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -28,63 +36,74 @@ public class ModelManager implements ModelService {
 	private ModelRepository modelRepository;
 	private ModelMapperService modelMapperService;
 	private BrandService brandService;
+	private ModelDeletedProducer modelDeletedProducer;
+	private ModelUpdatedProducer modelUpdatedProducer;
 
 	@Override
-	public List<GetAllModelsResponse> getAll() {
-		List<Model> models = this.modelRepository.findAll();
-		List<GetAllModelsResponse> response = models.stream()
-				.map(model -> this.modelMapperService.forResponse().map(model, GetAllModelsResponse.class))
-				.collect(Collectors.toList());
-		return response;
+	public DataResult<List<GetAllModelsResponse>> getAll() {
+		List<Model> models = modelRepository.findAll();
+		List<GetAllModelsResponse> responses = models.stream()
+				.map(model -> modelMapperService.forResponse().map(model, GetAllModelsResponse.class)).toList();
+		return new SuccessDataResult<List<GetAllModelsResponse>>(responses, Messages.ModelListed);
 	}
 
 	@Override
-	public CreateModelResponse add(CreateModelRequest createModelRequest) {
+	public DataResult<CreateModelResponse> add(CreateModelRequest createModelRequest) {
 		checkIfModelExistsByName(createModelRequest.getName());
 		checkIfBrandNotExistsById(createModelRequest.getBrandId());
-		Model model = this.modelMapperService.forRequest().map(createModelRequest, Model.class);
+		Model model = modelMapperService.forRequest().map(createModelRequest, Model.class);
 		model.setId(UUID.randomUUID().toString());
+		modelRepository.save(model);
 
-		this.modelRepository.save(model);
-
-		CreateModelResponse createModelResponse = this.modelMapperService.forResponse().map(model,
-				CreateModelResponse.class);
-		return createModelResponse;
+		CreateModelResponse response = modelMapperService.forResponse().map(model, CreateModelResponse.class);
+		return new SuccessDataResult<CreateModelResponse>(response, Messages.ModelAdded);
 	}
 
 	@Override
-	public UpdateModelResponse update(UpdateModelRequest updateModelRequest) {
+	public DataResult<UpdateModelResponse> update(UpdateModelRequest updateModelRequest) {
 		checkIfModelNotExistsById(updateModelRequest.getId());
 		checkIfBrandNotExistsById(updateModelRequest.getBrandId());
-		Model model = this.modelMapperService.forRequest().map(updateModelRequest, Model.class);
-		this.modelRepository.save(model);
+		Model model = modelMapperService.forRequest().map(updateModelRequest, Model.class);
+		modelRepository.save(model);
 
-		UpdateModelResponse updateModelResponse = this.modelMapperService.forResponse().map(model,
-				UpdateModelResponse.class);
+		GetModelResponse result = getById(model.getId()).getData();
+		ModelUpdatedEvent modelUpdatedEvent = new ModelUpdatedEvent();
+		modelUpdatedEvent.setModelId(result.getId());
+		modelUpdatedEvent.setModelName(result.getName());
+		modelUpdatedEvent.setBrandId(result.getBrandId());
+		modelUpdatedEvent.setMessage(Messages.ModelUpdated);
+		modelUpdatedProducer.sendMessage(modelUpdatedEvent);
 
-		return updateModelResponse;
+		UpdateModelResponse response = modelMapperService.forResponse().map(model, UpdateModelResponse.class);
+		return new SuccessDataResult<UpdateModelResponse>(response, Messages.ModelUpdated);
 	}
 
 	@Override
-	public GetModelResponse getById(String id) {
+	public DataResult<GetModelResponse> getById(String id) {
 		checkIfModelNotExistsById(id);
-		Model model = this.modelRepository.findById(id).get();
-		GetModelResponse modelResponse = this.modelMapperService.forResponse().map(model, GetModelResponse.class);
-		return modelResponse;
+		Model model = modelRepository.findById(id).get();
+		GetModelResponse response = modelMapperService.forResponse().map(model, GetModelResponse.class);
+		return new SuccessDataResult<GetModelResponse>(response);
 	}
 
 	@Override
-	public GetModelResponse getByName(String name) {
+	public DataResult<GetModelResponse> getByName(String name) {
 		checkIfModelNotExistsByName(name);
 		Model model = this.modelRepository.findByName(name).get();
-		GetModelResponse modelResponse = this.modelMapperService.forResponse().map(model, GetModelResponse.class);
-		return modelResponse;
+		GetModelResponse response = modelMapperService.forResponse().map(model, GetModelResponse.class);
+		return new SuccessDataResult<GetModelResponse>(response);
 	}
 
 	@Override
-	public void deleteById(String id) {
+	public Result deleteById(String id) {
 		checkIfModelNotExistsById(id);
 		this.modelRepository.deleteById(id);
+
+		ModelDeletedEvent deletedEvent = new ModelDeletedEvent();
+		deletedEvent.setModelId(id);
+		deletedEvent.setMessage(Messages.ModelDeleted);
+		modelDeletedProducer.sendMessage(deletedEvent);
+		return new SuccessResult(Messages.ModelDeleted);
 
 	}
 

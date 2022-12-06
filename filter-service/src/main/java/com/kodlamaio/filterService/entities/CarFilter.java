@@ -1,7 +1,6 @@
-package com.kodlamaio.inventoryService.entities.filter;
+package com.kodlamaio.filterService.entities;
 
-import javax.persistence.Id;
-
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -10,21 +9,28 @@ import lombok.NoArgsConstructor;
 
 @Document
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class CarFilter {
+
 	@Id
 	private String id;
-	
+
 	private String carId;
-	private String carPlate;
-	private int carModelYear;
+
 	private double carDailyPrice;
-	private int state;
-	
+
+	private int carModelYear;
+
+	private String carPlate;
+
 	private String carModelId;
+
 	private String carModelName;
-	
+
 	private String carBrandId;
+
 	private String carBrandName;
+
+	private String carState;
 }

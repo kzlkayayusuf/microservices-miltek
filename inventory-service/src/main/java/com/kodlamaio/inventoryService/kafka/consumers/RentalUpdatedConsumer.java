@@ -1,11 +1,11 @@
-package com.kodlamaio.inventoryService.kafka;
+package com.kodlamaio.inventoryService.kafka.consumers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.kodlamaio.common.events.RentalUpdatedEvent;
+import com.kodlamaio.common.events.rentals.RentalUpdatedEvent;
 import com.kodlamaio.inventoryService.business.abstracts.CarService;
 
 import lombok.AllArgsConstructor;
