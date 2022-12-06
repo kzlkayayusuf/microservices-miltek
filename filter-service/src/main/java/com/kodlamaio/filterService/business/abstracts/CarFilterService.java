@@ -4,25 +4,40 @@ import java.util.List;
 
 import com.kodlamaio.common.utilities.results.DataResult;
 import com.kodlamaio.common.utilities.results.Result;
+import com.kodlamaio.filterService.business.dataAccess.responses.GetAllFiltersResponse;
 import com.kodlamaio.filterService.entities.CarFilter;
 
 public interface CarFilterService {
+	DataResult<List<GetAllFiltersResponse>> getAll();
 
-	Result add(CarFilter carFilter);
+	DataResult<List<GetAllFiltersResponse>> getByBrandName(String brandName);
 
-	Result update(CarFilter carFilter);
+	DataResult<List<GetAllFiltersResponse>> getByModelName(String modelName);
 
-	DataResult<List<CarFilter>> getByCarId(String carId);
+	DataResult<List<GetAllFiltersResponse>> getByPlate(String plate);
+
+	DataResult<List<GetAllFiltersResponse>> searchByPlate(String plate);
+
+	DataResult<List<GetAllFiltersResponse>> searchByBrandName(String brandName);
+
+	DataResult<List<GetAllFiltersResponse>> searchByModelName(String modelName);
+
+	DataResult<List<GetAllFiltersResponse>> getByModelYear(int modelYear);
+
+	DataResult<List<GetAllFiltersResponse>> getByState(int state);
+
+	// Consumer service
+	DataResult<CarFilter> getByCarId(String id);
 
 	DataResult<List<CarFilter>> getByModelId(String modelId);
 
 	DataResult<List<CarFilter>> getByBrandId(String brandId);
 
-	Result updateBrand(CarFilter carFilter);
+	Result add(CarFilter mongodb);
 
-	Result deleteCar(String carId);
+	Result delete(String id);
 
-	Result deleteModel(String modelId);
+	Result deleteAllByBrandId(String brandId);
 
-	Result deleteBrand(String brandId);
+	Result deleteAllByModelId(String modelId);
 }

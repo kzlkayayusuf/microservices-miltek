@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.kodlamaio.common.events.brands.BrandDeleteEvent;
-import com.kodlamaio.common.events.brands.BrandUpdateEvent;
+import com.kodlamaio.common.events.inventories.brands.BrandDeletedEvent;
+import com.kodlamaio.common.events.inventories.brands.BrandUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.common.utilities.results.DataResult;
@@ -23,8 +23,7 @@ import com.kodlamaio.inventoryService.business.responses.get.GetBrandResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateBrandResponse;
 import com.kodlamaio.inventoryService.dataAccess.BrandRepository;
 import com.kodlamaio.inventoryService.entities.Brand;
-import com.kodlamaio.inventoryService.kafka.producers.BrandDeletedProducer;
-import com.kodlamaio.inventoryService.kafka.producers.BrandUpdatedProducer;
+import com.kodlamaio.inventoryService.kafka.producers.InventoryProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -34,8 +33,7 @@ public class BrandManager implements BrandService {
 
 	private BrandRepository brandRepository;
 	private ModelMapperService modelMapperService;
-	private BrandDeletedProducer brandDeletedProducer;
-	private BrandUpdatedProducer brandUpdatedProducer;
+	private final InventoryProducer producer;
 
 	@Override
 	public DataResult<List<GetAllBrandsResponse>> getAll() {
@@ -63,12 +61,7 @@ public class BrandManager implements BrandService {
 		Brand brand = modelMapperService.forRequest().map(updateBrandRequest, Brand.class);
 		brandRepository.save(brand);
 
-		GetBrandResponse result = getById(brand.getId()).getData();
-		BrandUpdateEvent brandUpdateEvent = new BrandUpdateEvent();
-		brandUpdateEvent.setCarBrandId(result.getId());
-		brandUpdateEvent.setCarBrandName(result.getName());
-		brandUpdateEvent.setMessage(Messages.BrandUpdated);
-		brandUpdatedProducer.sendMessage(brandUpdateEvent);
+		updateMongo(brand.getId(), brand.getName());
 
 		UpdateBrandResponse response = modelMapperService.forResponse().map(brand, UpdateBrandResponse.class);
 		return new SuccessDataResult<UpdateBrandResponse>(response, Messages.BrandUpdated);
@@ -96,13 +89,23 @@ public class BrandManager implements BrandService {
 		checkIfBrandNotExistsById(id);
 		this.brandRepository.deleteById(id);
 
-		BrandDeleteEvent brandDeleteEvent = new BrandDeleteEvent();
-		brandDeleteEvent.setBrandId(id);
-		brandDeleteEvent.setMessage(Messages.BrandDeleted);
-		brandDeletedProducer.sendMessage(brandDeleteEvent);
+		deleteMongo(id);
 
 		return new SuccessResult(Messages.BrandDeleted);
 
+	}
+
+	private void updateMongo(String id, String name) {
+		BrandUpdatedEvent event = new BrandUpdatedEvent();
+		event.setCarBrandId(id);
+		event.setCarBrandName(name);
+		producer.sendMessage(event);
+	}
+
+	private void deleteMongo(String id) {
+		BrandDeletedEvent event = new BrandDeletedEvent();
+		event.setBrandId(id);
+		producer.sendMessage(event);
 	}
 
 	private void checkIfBrandExistsByName(String name) {

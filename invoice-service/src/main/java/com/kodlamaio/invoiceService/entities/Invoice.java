@@ -1,5 +1,7 @@
 package com.kodlamaio.invoiceService.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,10 +20,22 @@ public class Invoice {
 	@Id
 	@Column(name = "id")
 	private String id;
-	@Column(name = "rentalId")
-	private String rentalId;
+	@Column(name = "carId")
+	private String carId;
+	@Column(name = "fullName")
+	private String fullName;
+	@Column(name = "modelName")
+	private String modelName;
+	@Column(name = "brandName")
+	private String brandName;
+	@Column(name = "modelYear")
+	private int modelYear;
+	@Column(name = "dailyPrice")
+	private double dailyPrice;
 	@Column(name = "totalPrice")
 	private double totalPrice;
-	@Column(name = "cardHolder")
-	private String cardHolder;
+	@Column(name = "rentedForDays")
+	private int rentedForDays;
+	@Column(name = "rentedAt")
+	private LocalDateTime rentedAt;
 }

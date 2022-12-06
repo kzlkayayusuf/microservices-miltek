@@ -19,23 +19,17 @@ public class Payment {
 	@Id
 	@Column(name = "id")
 	private String id;
-
-	@Column(name = "rentalId")
-	private String rentalId;
-
-	@Column(name = "cardNo")
-	private String cardNo;
-
-	@Column(name = "cardHolder")
-	private String cardHolder;
-
-	@Column(name = "cardBalance")
-	private double cardBalance;
-
-	@Column(name = "status")
-	private int status; // 0-Red,1-Onay
-
-	@Column(name = "totalPrice")
-	private double totalPrice;
+	@Column(name = "card_number")
+	private String cardNumber;
+	@Column(name = "full_name")
+	private String fullName;
+	@Column(name = "card_expiration_year")
+	private int cardExpirationYear;
+	@Column(name = "card_expiration_month")
+	private int cardExpirationMonth;
+	@Column(name = "card_cvv")
+	private String cardCvv;
+	@Column(name = "balance")
+	private double balance;
 
 }

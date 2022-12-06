@@ -24,17 +24,4 @@ public class CreateRentalRequest {
 	@Min(value = 0)
 	private double dailyPrice;
 
-	@NotBlank
-	@NotNull
-	@Size(min = 16, max = 16)
-	private String cardNo;
-
-	@NotBlank
-	@NotNull
-	@Size(min = 4)
-	private String cardHolder;
-
-	@Min(value = 0)
-	private double cardBalance;
-
 }

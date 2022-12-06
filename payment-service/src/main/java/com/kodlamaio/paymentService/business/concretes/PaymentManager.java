@@ -2,20 +2,22 @@ package com.kodlamaio.paymentService.business.concretes;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.kodlamaio.common.events.InvoiceCreatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.paymentService.business.abstracts.PaymentService;
-import com.kodlamaio.paymentService.business.requests.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.responses.CreatePaymentResponse;
-import com.kodlamaio.paymentService.business.responses.GetAllPaymentsResponse;
+import com.kodlamaio.paymentService.business.abstracts.PosService;
+import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
+import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
+import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
+import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
+import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
+import com.kodlamaio.paymentService.business.responses.get.GetPaymentResponse;
+import com.kodlamaio.paymentService.business.responses.update.UpdatePaymentResponse;
 import com.kodlamaio.paymentService.dataAccess.PaymentRepository;
 import com.kodlamaio.paymentService.entities.Payment;
-import com.kodlamaio.paymentService.kafka.PaymentCreatedProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -24,41 +26,87 @@ import lombok.AllArgsConstructor;
 public class PaymentManager implements PaymentService {
 	private PaymentRepository paymentRepository;
 	private ModelMapperService modelMapperService;
-	private PaymentCreatedProducer paymentCreatedProducer;
+	private final PosService posService;
 
 	@Override
 	public List<GetAllPaymentsResponse> getAll() {
-		return paymentRepository.findAll().stream()
-				.map(payment -> modelMapperService.forResponse().map(payment, GetAllPaymentsResponse.class))
-				.collect(Collectors.toList());
+		List<Payment> payments = paymentRepository.findAll();
+		List<GetAllPaymentsResponse> response = payments.stream()
+				.map(payment -> modelMapperService.forResponse().map(payment, GetAllPaymentsResponse.class)).toList();
+
+		return response;
 	}
 
 	@Override
-	public CreatePaymentResponse add(CreatePaymentRequest createPaymentRequest) {
+	public GetPaymentResponse getById(String id) {
+		checkIfPaymentExists(id);
+		Payment payment = paymentRepository.findById(id).orElseThrow();
+		GetPaymentResponse response = modelMapperService.forResponse().map(payment, GetPaymentResponse.class);
 
-		Payment payment = modelMapperService.forRequest().map(createPaymentRequest, Payment.class);
+		return response;
+	}
+
+	@Override
+	public CreatePaymentResponse add(CreatePaymentRequest request) {
+		checkIfCardNumberExists(request.getCardNumber());
+		Payment payment = modelMapperService.forRequest().map(request, Payment.class);
 		payment.setId(UUID.randomUUID().toString());
-		payment.setStatus(1);// onay
+		paymentRepository.save(payment);
+		CreatePaymentResponse response = modelMapperService.forResponse().map(payment, CreatePaymentResponse.class);
 
-		Payment createdPayment = paymentRepository.save(payment);
-
-		InvoiceCreatedEvent event = new InvoiceCreatedEvent();
-		event.setRentalId(createPaymentRequest.getRentalId());
-		event.setCardHolder(createPaymentRequest.getCardHolder());
-		event.setTotalPrice(createPaymentRequest.getTotalPrice());
-
-		paymentCreatedProducer.sendMessage(event);
-
-		CreatePaymentResponse createPaymentResponse = modelMapperService.forResponse().map(payment,
-				CreatePaymentResponse.class);
-
-		return createPaymentResponse;
+		return response;
 	}
 
 	@Override
-	public void checkBalanceEnough(double balance, double totalPrice) {
-		if (balance < totalPrice)
-			throw new BusinessException("Insufficient Balance");
+	public UpdatePaymentResponse update(UpdatePaymentRequest request, String id) {
+		checkIfPaymentExists(id);
+		Payment payment = modelMapperService.forRequest().map(request, Payment.class);
+		payment.setId(id);
+		paymentRepository.save(payment);
+		UpdatePaymentResponse response = modelMapperService.forResponse().map(payment, UpdatePaymentResponse.class);
+
+		return response;
+	}
+
+	@Override
+	public void delete(String id) {
+		checkIfPaymentExists(id);
+		paymentRepository.deleteById(id);
+	}
+
+	@Override
+	public void checkIfPaymentSuccessful(GetPaymentRequest request) {
+		checkPayment(request);
+	}
+
+	private void checkPayment(GetPaymentRequest request) {
+		if (!paymentRepository.existsByCardNumberAndFullNameAndCardExpirationYearAndCardExpirationMonthAndCardCvv(
+				request.getCardNumber(), request.getFullName(), request.getCardExpirationYear(),
+				request.getCardExpirationMonth(), request.getCardCvv())) {
+			throw new BusinessException("NOT_A_VALID_PAYMENT!");
+		} else {
+			double balance = paymentRepository.findByCardNumber(request.getCardNumber()).getBalance();
+			if (balance < request.getPrice()) {
+				throw new BusinessException("NOT_ENOUGH_MONEY!");
+			} else {
+				posService.pay(); // Fake payment
+				Payment payment = paymentRepository.findByCardNumber(request.getCardNumber());
+				payment.setBalance(balance - request.getPrice());
+				paymentRepository.save(payment);
+			}
+		}
+	}
+
+	private void checkIfPaymentExists(String id) {
+		if (!paymentRepository.existsById(id)) {
+			throw new BusinessException("PAYMENT_NOT_FOUND!");
+		}
+	}
+
+	private void checkIfCardNumberExists(String cardNumber) {
+		if (paymentRepository.existsByCardNumber(cardNumber)) {
+			throw new BusinessException("CARD_NUMBER_ALREADY_EXISTS!");
+		}
 	}
 
 }

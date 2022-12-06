@@ -5,8 +5,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.kodlamaio.common.events.models.ModelDeletedEvent;
-import com.kodlamaio.common.events.models.ModelUpdatedEvent;
+import com.kodlamaio.common.events.inventories.models.ModelDeletedEvent;
+import com.kodlamaio.common.events.inventories.models.ModelUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.common.utilities.results.DataResult;
@@ -24,8 +24,7 @@ import com.kodlamaio.inventoryService.business.responses.get.GetModelResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateModelResponse;
 import com.kodlamaio.inventoryService.dataAccess.ModelRepository;
 import com.kodlamaio.inventoryService.entities.Model;
-import com.kodlamaio.inventoryService.kafka.producers.ModelDeletedProducer;
-import com.kodlamaio.inventoryService.kafka.producers.ModelUpdatedProducer;
+import com.kodlamaio.inventoryService.kafka.producers.InventoryProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -36,8 +35,7 @@ public class ModelManager implements ModelService {
 	private ModelRepository modelRepository;
 	private ModelMapperService modelMapperService;
 	private BrandService brandService;
-	private ModelDeletedProducer modelDeletedProducer;
-	private ModelUpdatedProducer modelUpdatedProducer;
+	private final InventoryProducer producer;
 
 	@Override
 	public DataResult<List<GetAllModelsResponse>> getAll() {
@@ -66,13 +64,7 @@ public class ModelManager implements ModelService {
 		Model model = modelMapperService.forRequest().map(updateModelRequest, Model.class);
 		modelRepository.save(model);
 
-		GetModelResponse result = getById(model.getId()).getData();
-		ModelUpdatedEvent modelUpdatedEvent = new ModelUpdatedEvent();
-		modelUpdatedEvent.setModelId(result.getId());
-		modelUpdatedEvent.setModelName(result.getName());
-		modelUpdatedEvent.setBrandId(result.getBrandId());
-		modelUpdatedEvent.setMessage(Messages.ModelUpdated);
-		modelUpdatedProducer.sendMessage(modelUpdatedEvent);
+		updateMongo(updateModelRequest.getId(), updateModelRequest.getName(), updateModelRequest.getBrandId());
 
 		UpdateModelResponse response = modelMapperService.forResponse().map(model, UpdateModelResponse.class);
 		return new SuccessDataResult<UpdateModelResponse>(response, Messages.ModelUpdated);
@@ -99,12 +91,24 @@ public class ModelManager implements ModelService {
 		checkIfModelNotExistsById(id);
 		this.modelRepository.deleteById(id);
 
-		ModelDeletedEvent deletedEvent = new ModelDeletedEvent();
-		deletedEvent.setModelId(id);
-		deletedEvent.setMessage(Messages.ModelDeleted);
-		modelDeletedProducer.sendMessage(deletedEvent);
-		return new SuccessResult(Messages.ModelDeleted);
+		deleteMongo(id);
 
+		return new SuccessResult(Messages.ModelDeleted);
+	}
+
+	private void updateMongo(String id, String name, String brandId) {
+		ModelUpdatedEvent event = new ModelUpdatedEvent();
+		event.setModelId(id);
+		event.setModelName(name);
+		;
+		event.setBrandId(brandId);
+		producer.sendMessage(event);
+	}
+
+	private void deleteMongo(String id) {
+		ModelDeletedEvent event = new ModelDeletedEvent();
+		event.setModelId(id);
+		producer.sendMessage(event);
 	}
 
 	private void checkIfModelExistsByName(String name) {

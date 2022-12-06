@@ -15,11 +15,6 @@ public class GetRentalResponse {
 	private String carId;
 	private LocalDateTime dateStarted;
 	private int rentedForDays;
-	private double carDailyPrice;
+	private double dailyPrice;
 	private double totalPrice;
-	private int carModelYear;
-	private String carPlate;
-	private int carState;
-	private String carModelName;
-	private String carModelBrandName;
 }
