@@ -60,7 +60,7 @@ public class InvoicesController {
 		return ResponseEntity.badRequest().body(result);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping
 	public ResponseEntity<?> update(@Valid @RequestBody UpdateInvoiceRequest request) {
 		DataResult<UpdateInvoiceResponse> result = invoiceService.update(request);
 		if (result.isSuccess()) {

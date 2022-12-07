@@ -12,7 +12,7 @@ public interface CarFilterRepository extends MongoRepository<CarFilter, String> 
 
 	List<CarFilter> findByModelNameIgnoreCase(String modelName);
 
-	List<CarFilter> findByPlateIgnoreCase(String plate);
+	CarFilter findByPlateIgnoreCase(String plate);
 
 	List<CarFilter> findByPlateContainingIgnoreCase(String plate);
 
@@ -35,4 +35,6 @@ public interface CarFilterRepository extends MongoRepository<CarFilter, String> 
 	void deleteAllByBrandId(String brandId);
 
 	void deleteAllByModelId(String modelId);
+	
+	boolean existsByPlate(String plate);
 }

@@ -11,14 +11,15 @@ import com.kodlamaio.common.utilities.results.SuccessDataResult;
 import com.kodlamaio.common.utilities.results.SuccessResult;
 import com.kodlamaio.filterService.business.abstracts.CarFilterService;
 import com.kodlamaio.filterService.business.constants.Messages;
-import com.kodlamaio.filterService.business.dataAccess.responses.GetAllFiltersResponse;
+import com.kodlamaio.filterService.business.responses.GetAllFiltersResponse;
+import com.kodlamaio.filterService.business.responses.GetFilterResponse;
 import com.kodlamaio.filterService.dataAccess.abstracts.CarFilterRepository;
 import com.kodlamaio.filterService.entities.CarFilter;
 
 import lombok.AllArgsConstructor;
 
-@Service
 @AllArgsConstructor
+@Service
 public class CarFilterManager implements CarFilterService {
 
 	private CarFilterRepository carFilterRepository;
@@ -52,12 +53,12 @@ public class CarFilterManager implements CarFilterService {
 	}
 
 	@Override
-	public DataResult<List<GetAllFiltersResponse>> getByPlate(String plate) {
-		List<CarFilter> filters = carFilterRepository.findByPlateIgnoreCase(plate);
-		List<GetAllFiltersResponse> response = filters.stream()
-				.map(filter -> modelMapperService.forResponse().map(filter, GetAllFiltersResponse.class)).toList();
+	public DataResult<GetFilterResponse> getByPlate(String plate) {
+		checkIfExistByPlate(plate);
+		CarFilter filter = carFilterRepository.findByPlateIgnoreCase(plate);
+		GetFilterResponse response = modelMapperService.forResponse().map(filter, GetFilterResponse.class);
 
-		return new SuccessDataResult<List<GetAllFiltersResponse>>(response, Messages.FilterPlateListed);
+		return new SuccessDataResult<GetFilterResponse>(response, Messages.FilterPlateListed);
 	}
 
 	@Override
@@ -145,6 +146,12 @@ public class CarFilterManager implements CarFilterService {
 	public Result deleteAllByModelId(String modelId) {
 		carFilterRepository.deleteAllByModelId(modelId);
 		return new SuccessResult();
+	}
+
+	private void checkIfExistByPlate(String plate) {
+		if (!carFilterRepository.existsByPlate(plate)) {
+			throw new RuntimeException("CAR_NOT_EXISTS");
+		}
 	}
 
 }

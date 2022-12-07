@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class CreateCarResponse {
 
 	private String id;
-	private double dailyPrice;
 	private int modelYear;
 	private String plate;
 	private int state;

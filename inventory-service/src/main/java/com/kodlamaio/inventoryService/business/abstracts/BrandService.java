@@ -20,7 +20,7 @@ public interface BrandService {
 
 	DataResult<GetBrandResponse> getById(String id);
 
-	DataResult<List<GetAllBrandsResponse>> getByName(String name);
+	DataResult<GetBrandResponse> getByName(String name);
 
 	Result deleteById(String id);
 

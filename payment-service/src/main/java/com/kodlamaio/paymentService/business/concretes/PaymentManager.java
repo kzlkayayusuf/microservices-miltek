@@ -15,7 +15,7 @@ import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.abstracts.PosService;
 import com.kodlamaio.paymentService.business.constants.Messages;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
+import com.kodlamaio.paymentService.business.requests.create.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
@@ -80,22 +80,23 @@ public class PaymentManager implements PaymentService {
 	}
 
 	@Override
-	public Result checkIfPaymentSuccessful(GetPaymentRequest request) {
+	public Result checkIfPaymentSuccessful(CreateRentalPaymentRequest request) {
 		checkPayment(request);
 		return new SuccessResult(Messages.PaymentSuccessful);
 	}
 
-	private void checkPayment(GetPaymentRequest request) {
-		if (!paymentRepository.existsByCardInformation(request.getCardNumber(), request.getFullName(),
-				request.getCardExpirationYear(), request.getCardExpirationMonth(), request.getCardCvv())) {
+	private void checkPayment(CreateRentalPaymentRequest request) {
+		if (!paymentRepository.existsByCardNumberAndFullNameAndCardExpirationYearAndCardExpirationMonthAndCardCvv(
+				request.getCardNumber(), request.getFullName(), request.getCardExpirationYear(),
+				request.getCardExpirationMonth(), request.getCardCvv())) {
 			throw new BusinessException("NOT_A_VALID_PAYMENT!");
 		} else {
-			double balance = paymentRepository.findByCardNumber(request.getCardNumber()).getBalance();
+			Payment payment = paymentRepository.findByCardNumber(request.getCardNumber());
+			double balance = payment.getBalance();
 			if (balance < request.getPrice()) {
 				throw new BusinessException("NOT_ENOUGH_MONEY!");
 			} else {
 				posService.pay(); // Fake payment
-				Payment payment = paymentRepository.findByCardNumber(request.getCardNumber());
 				payment.setBalance(balance - request.getPrice());
 				paymentRepository.save(payment);
 			}

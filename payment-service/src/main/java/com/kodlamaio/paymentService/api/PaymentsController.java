@@ -19,7 +19,7 @@ import com.kodlamaio.common.utilities.results.DataResult;
 import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
+import com.kodlamaio.paymentService.business.requests.create.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
@@ -62,7 +62,7 @@ public class PaymentsController {
 		return ResponseEntity.badRequest().body(result);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping
 	public ResponseEntity<?> update(@Valid @RequestBody UpdatePaymentRequest request) {
 		DataResult<UpdatePaymentResponse> result = paymentService.update(request);
 		if (result.isSuccess()) {
@@ -84,8 +84,10 @@ public class PaymentsController {
 	public ResponseEntity<?> checkIfPaymentSuccessful(@RequestParam String cardNumber, @RequestParam String fullName,
 			@RequestParam int cardExpirationYear, @RequestParam int cardExpirationMonth, @RequestParam String cardCvv,
 			@RequestParam double price) {
-		GetPaymentRequest request = new GetPaymentRequest(cardNumber, fullName, cardExpirationYear, cardExpirationMonth,
-				cardCvv, price);
+
+		CreateRentalPaymentRequest request = new CreateRentalPaymentRequest(cardNumber, fullName, cardExpirationYear,
+				cardExpirationMonth, cardCvv, price);
+
 		Result result = paymentService.checkIfPaymentSuccessful(request);
 		if (result.isSuccess()) {
 			return ResponseEntity.ok(result);

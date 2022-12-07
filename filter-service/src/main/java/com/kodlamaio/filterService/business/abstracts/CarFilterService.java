@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.kodlamaio.common.utilities.results.DataResult;
 import com.kodlamaio.common.utilities.results.Result;
-import com.kodlamaio.filterService.business.dataAccess.responses.GetAllFiltersResponse;
+import com.kodlamaio.filterService.business.responses.GetAllFiltersResponse;
+import com.kodlamaio.filterService.business.responses.GetFilterResponse;
 import com.kodlamaio.filterService.entities.CarFilter;
 
 public interface CarFilterService {
@@ -14,7 +15,7 @@ public interface CarFilterService {
 
 	DataResult<List<GetAllFiltersResponse>> getByModelName(String modelName);
 
-	DataResult<List<GetAllFiltersResponse>> getByPlate(String plate);
+	DataResult<GetFilterResponse> getByPlate(String plate);
 
 	DataResult<List<GetAllFiltersResponse>> searchByPlate(String plate);
 

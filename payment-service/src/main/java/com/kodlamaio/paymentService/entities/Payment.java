@@ -19,15 +19,15 @@ public class Payment {
 	@Id
 	@Column(name = "id")
 	private String id;
-	@Column(name = "card_number")
+	@Column(name = "cardNumber")
 	private String cardNumber;
-	@Column(name = "full_name")
+	@Column(name = "fullName")
 	private String fullName;
-	@Column(name = "card_expiration_year")
+	@Column(name = "cardExpirationYear")
 	private int cardExpirationYear;
-	@Column(name = "card_expiration_month")
+	@Column(name = "cardExpirationMonth")
 	private int cardExpirationMonth;
-	@Column(name = "card_cvv")
+	@Column(name = "cardCvv")
 	private String cardCvv;
 	@Column(name = "balance")
 	private double balance;

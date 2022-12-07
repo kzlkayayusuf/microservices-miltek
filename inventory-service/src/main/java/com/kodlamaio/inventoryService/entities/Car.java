@@ -20,8 +20,6 @@ public class Car {
 	@Id
 	@Column(name="id")
 	private String id;
-	@Column(name="dailyPrice")
-	private double dailyPrice;
 	@Column(name="modelYear")
 	private int modelYear;
 	@Column(name="plate")

@@ -18,20 +18,18 @@ public class CarFilter {
 	private String id;
 	@Field(name = "carId")
 	private String carId;
-	@Field(name = "carDailyPrice")
-	private double carDailyPrice;
-	@Field(name = "carModelYear")
-	private int carModelYear;
-	@Field(name = "carPlate")
-	private String carPlate;
 	@Field(name = "modelId")
-	private String carModelId;
-	@Field(name = "carModelName")
-	private String carModelName;
-	@Field(name = "carBrandId")
-	private String carBrandId;
-	@Field(name = "carBrandName")
-	private String carBrandName;
-	@Field(name = "carState")
-	private int carState;
+	private String modelId;
+	@Field(name = "brandId")
+	private String brandId;
+	@Field(name = "modelName")
+	private String modelName;
+	@Field(name = "brandName")
+	private String brandName;
+	@Field(name = "modelYear")
+	private int modelYear;
+	@Field(name = "plate")
+	private String plate;
+	@Field(name = "state")
+	private int state;
 }

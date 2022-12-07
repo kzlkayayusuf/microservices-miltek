@@ -10,5 +10,4 @@ import lombok.NoArgsConstructor;
 public class BrandDeletedEvent {
 
 	private String brandId;
-	private String message;
 }

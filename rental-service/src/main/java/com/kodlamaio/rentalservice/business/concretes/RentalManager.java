@@ -80,6 +80,9 @@ public class RentalManager implements RentalService {
 		paymentReceivedEvent.setTotalPrice(totalPrice);
 		paymentReceivedEvent.setRentedForDays(createRentalRequest.getRentedForDays());
 		paymentReceivedEvent.setRentedAt(rental.getDateStarted());
+		paymentReceivedEvent.setBrandName(carClient.getCarResponse(rental.getCarId()).getBrandName());
+        paymentReceivedEvent.setModelName(carClient.getCarResponse(rental.getCarId()).getModelName());
+        paymentReceivedEvent.setModelYear(carClient.getCarResponse(rental.getCarId()).getModelYear());
 		rentalProducer.sendMessage(paymentReceivedEvent);
 
 		CreateRentalResponse response = modelMapperService.forResponse().map(rental, CreateRentalResponse.class);
@@ -93,17 +96,12 @@ public class RentalManager implements RentalService {
 		checkIfRentalNotExistsById(updateRentalRequest.getId());
 
 		RentalUpdatedEvent rentalUpdatedEvent = new RentalUpdatedEvent();
-		Rental rental = rentalRepository.findById(updateRentalRequest.getId()).get();
-		rentalUpdatedEvent.setOldCarId(rental.getCarId());
+		Rental rental = modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
+		rentalUpdatedEvent.setOldCarId(rentalRepository.findById(updateRentalRequest.getId()).orElseThrow().getCarId());
 
-		rental.setCarId(updateRentalRequest.getCarId());
-		rental.setDailyPrice(updateRentalRequest.getDailyPrice());
-		rental.setRentedForDays(updateRentalRequest.getRentedForDays());
-		rental.setTotalPrice(updateRentalRequest.getDailyPrice() * updateRentalRequest.getRentedForDays());
+		rentalRepository.save(rental);
 
-		Rental updatedRental = rentalRepository.save(rental);
-
-		rentalUpdatedEvent.setNewCarId(updatedRental.getCarId());
+		rentalUpdatedEvent.setNewCarId(rental.getCarId());
 		rentalUpdatedEvent.setMessage(Messages.RentalUpdated);
 		rentalProducer.sendMessage(rentalUpdatedEvent);
 

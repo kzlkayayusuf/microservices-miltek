@@ -22,7 +22,7 @@ public class CreateInvoiceRequest {
 	@NotBlank
 	private String brandName;
 	@NotNull
-	@Min(1886)
+	@Min(1994)
 	private int modelYear;
 	@Min(0)
 	private double dailyPrice;

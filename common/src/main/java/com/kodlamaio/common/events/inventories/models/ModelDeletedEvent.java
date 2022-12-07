@@ -11,5 +11,4 @@ public class ModelDeletedEvent {
 
 	private String modelId;
 
-	private String message;
 }

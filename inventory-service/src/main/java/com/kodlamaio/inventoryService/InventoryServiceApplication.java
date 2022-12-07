@@ -3,6 +3,8 @@ package com.kodlamaio.inventoryService;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.ValidationException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -55,6 +57,12 @@ public class InventoryServiceApplication {
 	}
 
 	@ExceptionHandler
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleValidationException(ValidationException exception) {
+		return new ErrorDataResult<>(exception.getMessage(), "VALIDATION EXCEPTION");
+	}
+
+	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public ErrorDataResult<Object> handleBusinessExceptions(BusinessException businessException) {
 		ErrorDataResult<Object> errorDataResult = new ErrorDataResult<Object>(businessException.getMessage(),
@@ -67,6 +75,14 @@ public class InventoryServiceApplication {
 	public ErrorDataResult<Object> handleDataIntegrityViolationException(DataIntegrityViolationException exception) {
 		ErrorDataResult<Object> errorDataResult = new ErrorDataResult<>(exception.getMessage(),
 				"DATA INTEGRITY EXCEPTION");
+		return errorDataResult;
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleRuntimeEception(RuntimeException exception) {
+		ErrorDataResult<Object> errorDataResult = new ErrorDataResult<>(exception.getMessage(), "RUNTIME EXCEPTION");
+
 		return errorDataResult;
 	}
 

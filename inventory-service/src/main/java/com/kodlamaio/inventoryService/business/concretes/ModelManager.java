@@ -98,8 +98,8 @@ public class ModelManager implements ModelService {
 
 	private void updateMongo(String id, String name, String brandId) {
 		ModelUpdatedEvent event = new ModelUpdatedEvent();
-		event.setModelId(id);
-		event.setModelName(name);
+		event.setId(id);
+		event.setName(name);
 		event.setBrandId(brandId);
 		producer.sendMessage(event);
 	}
@@ -118,19 +118,19 @@ public class ModelManager implements ModelService {
 
 	private void checkIfModelNotExistsById(String id) {
 		if (!this.modelRepository.findById(id).isPresent()) {
-			throw new BusinessException("MODEL.NOT EXISTS");
+			throw new BusinessException("MODEL.NOT.EXISTS");
 		}
 	}
 
 	private void checkIfModelNotExistsByName(String name) {
 		if (!this.modelRepository.findByName(name).isPresent()) {
-			throw new BusinessException("MODEL.NOT EXISTS");
+			throw new BusinessException("MODEL.NOT.EXISTS");
 		}
 	}
 
 	private void checkIfBrandNotExistsById(String brandId) {
 		if (this.brandService.getById(brandId) == null) {
-			throw new BusinessException("BRAND.ID.NOT EXISTS");
+			throw new BusinessException("BRAND.ID.NOT.EXISTS");
 		}
 	}
 

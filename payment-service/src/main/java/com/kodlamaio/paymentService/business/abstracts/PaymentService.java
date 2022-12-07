@@ -5,7 +5,7 @@ import java.util.List;
 import com.kodlamaio.common.utilities.results.DataResult;
 import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.requests.get.GetPaymentRequest;
+import com.kodlamaio.paymentService.business.requests.create.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
@@ -24,5 +24,5 @@ public interface PaymentService {
 
 	Result deleteById(String id);
 
-	Result checkIfPaymentSuccessful(GetPaymentRequest request);
+	Result checkIfPaymentSuccessful(CreateRentalPaymentRequest request);
 }

@@ -76,12 +76,11 @@ public class BrandManager implements BrandService {
 	}
 
 	@Override
-	public DataResult<List<GetAllBrandsResponse>> getByName(String name) {
+	public DataResult<GetBrandResponse> getByName(String name) {
 		checkIfBrandNotExistsByName(name);
-		List<Brand> brands = brandRepository.findByName(name).get();
-		List<GetAllBrandsResponse> responses = brands.stream()
-				.map(brand -> modelMapperService.forResponse().map(brand, GetAllBrandsResponse.class)).toList();
-		return new SuccessDataResult<List<GetAllBrandsResponse>>(responses, Messages.BrandListed);
+		Brand brand = brandRepository.findByName(name).get();
+		GetBrandResponse responses = modelMapperService.forResponse().map(brand, GetBrandResponse.class);
+		return new SuccessDataResult<GetBrandResponse>(responses, Messages.BrandListed);
 	}
 
 	@Override
@@ -97,8 +96,8 @@ public class BrandManager implements BrandService {
 
 	private void updateMongo(String id, String name) {
 		BrandUpdatedEvent event = new BrandUpdatedEvent();
-		event.setCarBrandId(id);
-		event.setCarBrandName(name);
+		event.setId(id);
+		event.setName(name);
 		producer.sendMessage(event);
 	}
 
@@ -116,13 +115,13 @@ public class BrandManager implements BrandService {
 
 	private void checkIfBrandNotExistsByName(String name) {
 		if (!this.brandRepository.findByName(name).isPresent()) {
-			throw new BusinessException("BRAND.NOT EXISTS");
+			throw new BusinessException("BRAND.NOT.EXISTS");
 		}
 	}
 
 	private void checkIfBrandNotExistsById(String id) {
 		if (!this.brandRepository.findById(id).isPresent()) {
-			throw new BusinessException("BRAND.NOT EXISTS");
+			throw new BusinessException("BRAND.NOT.EXISTS");
 		}
 	}
 

@@ -69,4 +69,13 @@ public class FilterServiceApplication {
 				"DATA INTEGRITY EXCEPTION");
 		return errorDataResult;
 	}
+
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorDataResult<Object> handleRuntimeEception(RuntimeException exception) {
+		ErrorDataResult<Object> errorDataResult = new ErrorDataResult<>(exception.getMessage(), "RUNTIME EXCEPTION");
+
+		return errorDataResult;
+	}
+
 }

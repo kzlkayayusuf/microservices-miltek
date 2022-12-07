@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateCarRequest {
 
-	@Min(0)
-	private double dailyPrice;
+
 	@Min(2015)
 	private int modelYear;
 	@NotBlank

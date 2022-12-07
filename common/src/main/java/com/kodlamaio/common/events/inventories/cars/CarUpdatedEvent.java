@@ -18,5 +18,4 @@ public class CarUpdatedEvent {
     private int modelYear;
     private String plate;
     private int state;
-	private String message;
 }

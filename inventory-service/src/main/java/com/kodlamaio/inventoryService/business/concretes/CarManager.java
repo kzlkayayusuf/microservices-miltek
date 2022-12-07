@@ -66,7 +66,11 @@ public class CarManager implements CarService {
 	public DataResult<UpdateCarResponse> update(UpdateCarRequest updateCarRequest) {
 		checkIfCarNotExistsById(updateCarRequest.getId());
 		checkIfModelNotExistsById(updateCarRequest.getModelId());
+		
+		int oldCarState = carRepository.findById(updateCarRequest.getId()).get().getState();
+		
 		Car car = modelMapperService.forRequest().map(updateCarRequest, Car.class);
+		car.setState(oldCarState);
 		carRepository.save(car);
 
 		updateMongo(updateCarRequest, car.getId());
@@ -123,19 +127,20 @@ public class CarManager implements CarService {
 	}
 
 	private void addToMongodb(String id) {
+		checkIfCarNotExistsById(id);
 		Car car = carRepository.findById(id).orElseThrow();
 		InventoryCreatedEvent event = modelMapperService.forResponse().map(car, InventoryCreatedEvent.class);
 		producer.sendMessage(event);
 	}
 
 	private void updateMongo(UpdateCarRequest request, String id) {
+		checkIfCarNotExistsById(id);
 		Car car = carRepository.findById(id).orElseThrow();
 		car.getModel().setId(request.getModelId());
 		car.getModel().getBrand().setId(car.getModel().getBrand().getId());
-		car.setState(request.getState());
+		car.setState(car.getState());
 		car.setPlate(request.getPlate());
 		car.setModelYear(request.getModelYear());
-		car.setDailyPrice(request.getDailyPrice());
 
 		CarUpdatedEvent event = modelMapperService.forResponse().map(car, CarUpdatedEvent.class);
 		producer.sendMessage(event);
@@ -155,19 +160,19 @@ public class CarManager implements CarService {
 
 	private void checkIfCarNotExistsById(String id) {
 		if (!this.carRepository.findById(id).isPresent()) {
-			throw new BusinessException("CAR.NOT EXISTS");
+			throw new BusinessException("CAR.NOT.EXISTS");
 		}
 	}
 
 	private void checkIfCarNotExistsByPlate(String plate) {
 		if (!this.carRepository.findByPlate(plate).isPresent()) {
-			throw new BusinessException("CAR.NOT EXISTS");
+			throw new BusinessException("CAR.NOT.EXISTS");
 		}
 	}
 
 	private void checkIfModelNotExistsById(String modelId) {
 		if (this.modelService.getById(modelId) == null) {
-			throw new BusinessException("MODEL.ID.NOT EXISTS");
+			throw new BusinessException("MODEL.ID.NOT.EXISTS");
 		}
 	}
 
