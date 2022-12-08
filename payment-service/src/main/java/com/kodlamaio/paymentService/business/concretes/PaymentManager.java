@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.kodlamaio.common.dataAccess.CreateRentalPaymentRequest;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.common.utilities.results.DataResult;
@@ -15,7 +16,6 @@ import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.abstracts.PosService;
 import com.kodlamaio.paymentService.business.constants.Messages;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.requests.create.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;

@@ -29,7 +29,7 @@ public class RentalProducer {
 		LOGGER.info(String.format("Rental created event => %s", rentalCreatedEvent.toString()));
 
 		Message<RentalCreatedEvent> message = MessageBuilder.withPayload(rentalCreatedEvent)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "rental-created").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -38,7 +38,7 @@ public class RentalProducer {
 		LOGGER.info(String.format("Rental updated event => %s", rentalUpdatedEvent.toString()));
 
 		Message<RentalUpdatedEvent> message = MessageBuilder.withPayload(rentalUpdatedEvent)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "rental-updated").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -47,7 +47,7 @@ public class RentalProducer {
 		LOGGER.info(String.format("Rental deleted event => %s", rentalDeleteEvent.toString()));
 
 		Message<RentalDeletedEvent> message = MessageBuilder.withPayload(rentalDeleteEvent)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "rental-deleted").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -56,7 +56,7 @@ public class RentalProducer {
 		LOGGER.info(String.format("Payment received event => %s", event.toString()));
 
 		Message<PaymentReceivedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "payment-received").build();
 
 		kafkaTemplate.send(message);
 	}

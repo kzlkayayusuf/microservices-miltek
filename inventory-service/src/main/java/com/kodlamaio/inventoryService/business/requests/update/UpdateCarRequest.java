@@ -16,6 +16,8 @@ public class UpdateCarRequest {
 	@NotBlank
 	@NotNull
 	private String id;
+	@Min(0)
+	private double dailyPrice;
 	@Min(1994)
 	private int modelYear;
 	@NotBlank

@@ -25,6 +25,9 @@ public class Car {
 	@Column(name="plate")
 	private String plate;
 	
+	@Column(name="dailyPrice")
+	private double dailyPrice;
+	
 	@Column(name="state") //1-available 2-under maintenance 3-rented
 	private int state;
 	

@@ -28,20 +28,20 @@ public class InventoryConsumer {
 	private final CarFilterService carFilterService;
 	private final ModelMapperService mapper;
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "inventory-create")
+	@KafkaListener(topics = "inventory-car-created", groupId = "inventory-create")
 	public void consume(InventoryCreatedEvent event) {
 		CarFilter filter = mapper.forRequest().map(event, CarFilter.class);
 		carFilterService.add(filter);
 		LOGGER.info("Inventory created event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "car-delete")
+	@KafkaListener(topics = "inventory-car-deleted", groupId = "car-delete")
 	public void consume(CarDeletedEvent event) {
 		carFilterService.delete(event.getCarId());
 		LOGGER.info("Car deleted event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "car-update")
+	@KafkaListener(topics = "inventory-car-updated", groupId = "car-update")
 	public void consume(CarUpdatedEvent event) {
 		CarFilter filter = mapper.forRequest().map(event, CarFilter.class);
 		String id = carFilterService.getByCarId(event.getCarId()).getData().getId();
@@ -50,14 +50,14 @@ public class InventoryConsumer {
 		LOGGER.info("Car updated event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "brand-delete")
+	@KafkaListener(topics = "inventory-brand-deleted", groupId = "brand-delete")
 	public void consume(BrandDeletedEvent event) {
 		carFilterService.deleteAllByBrandId(event.getBrandId());
 
 		LOGGER.info("Brand deleted event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "brand-update")
+	@KafkaListener(topics = "inventory-brand-updated", groupId = "brand-update")
 	public void consume(BrandUpdatedEvent event) {
 		carFilterService.getByBrandId(event.getId()).getData().forEach(filter -> {
 			filter.setBrandName(event.getName());
@@ -67,14 +67,14 @@ public class InventoryConsumer {
 		LOGGER.info("Brand updated event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "model-delete")
+	@KafkaListener(topics = "inventory-model-deleted", groupId = "model-delete")
 	public void consume(ModelDeletedEvent event) {
 		carFilterService.deleteAllByModelId(event.getModelId());
 
 		LOGGER.info("Model deleted event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "model-update")
+	@KafkaListener(topics = "inventory-model-updated", groupId = "model-update")
 	public void consume(ModelUpdatedEvent event) {
 		carFilterService.getByModelId(event.getId()).getData().forEach(filter -> {
 			filter.setModelName(event.getName());
@@ -86,7 +86,7 @@ public class InventoryConsumer {
 		LOGGER.info("Model updated event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "car-rental-create")
+	@KafkaListener(topics = "inventory-rental-created", groupId = "car-rental-create")
 	public void consume(CarRentalCreatedEvent event) {
 		CarFilter filter = carFilterService.getByCarId(event.getCarId()).getData();
 		filter.setState(3); // 3 - Rented
@@ -95,7 +95,7 @@ public class InventoryConsumer {
 		LOGGER.info("Car rental created event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "car-rental-update")
+	@KafkaListener(topics = "inventory-rental-updated", groupId = "car-rental-update")
 	public void consume(CarRentalUpdatedEvent event) {
 		CarFilter oldCar = carFilterService.getByCarId(event.getOldCarId()).getData();
 		CarFilter newCar = carFilterService.getByCarId(event.getNewCarId()).getData();
@@ -107,7 +107,7 @@ public class InventoryConsumer {
 		LOGGER.info("Car rental updated event consumed: {}", event);
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "car-rental-delete")
+	@KafkaListener(topics = "inventory-rental-deleted", groupId = "car-rental-delete")
 	public void consume(CarRentalDeletedEvent event) {
 		CarFilter car = carFilterService.getByCarId(event.getCarId()).getData();
 		car.setState(1); // 1 -Available

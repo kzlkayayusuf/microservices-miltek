@@ -24,7 +24,7 @@ public class RentalConsumer {
 	private final CarService carService;
 	private final InventoryProducer producer;
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "created_rental")
+	@KafkaListener(topics = "rental-created", groupId = "rental-create")
 	public void consume(RentalCreatedEvent event) {
 		LOGGER.info(String.format("Order event received in stock service => %s", event.toString()));
 		carService.updateCarState(event.getCarId(), 3); // 1-available 2-under maintenance 3-rented
@@ -36,7 +36,7 @@ public class RentalConsumer {
 		LOGGER.info("Car rented!");
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "updated_rental")
+	@KafkaListener(topics = "rental-updated", groupId = "rental-update")
 	public void consume(RentalUpdatedEvent event) {
 		LOGGER.info(String.format("Order event received in stock service => %s", event.toString()));
 		carService.updateCarState(event.getOldCarId(), 1);
@@ -50,7 +50,7 @@ public class RentalConsumer {
 		LOGGER.info("Car rented state updated!");
 	}
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "rental-delete")
+	@KafkaListener(topics = "rental-deleted", groupId = "rental-delete")
 	public void consume(RentalDeletedEvent event) {
 		carService.updateCarState(event.getCarId(), 1);
 		CarRentalDeletedEvent carRentalDeletedEvent = new CarRentalDeletedEvent();

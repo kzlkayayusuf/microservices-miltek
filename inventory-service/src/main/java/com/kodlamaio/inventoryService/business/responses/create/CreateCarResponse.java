@@ -11,6 +11,7 @@ public class CreateCarResponse {
 
 	private String id;
 	private int modelYear;
+	private double dailyPrice;
 	private String plate;
 	private int state;
 	private String modelId;

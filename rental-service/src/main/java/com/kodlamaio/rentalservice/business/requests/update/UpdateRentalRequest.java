@@ -19,10 +19,10 @@ public class UpdateRentalRequest {
 	@NotBlank
 	@NotNull
 	private String carId;
-
+	@NotNull
 	@Min(value = 1)
 	private int rentedForDays;
-
+	@NotNull
 	@Min(value = 0)
 	private double dailyPrice;
 

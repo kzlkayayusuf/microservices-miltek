@@ -1,10 +1,11 @@
 package com.kodlamaio.rentalservice.client;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kodlamaio.common.dataAccess.CreateRentalPaymentRequest;
 import com.kodlamaio.common.utilities.results.Result;
 
 import feign.Headers;
@@ -13,7 +14,5 @@ import feign.Headers;
 public interface PaymentClient {
 	@RequestMapping(method = RequestMethod.POST, value = "/payment/api/payments/check")
 	@Headers(value = "Content-Type: application/json")
-	Result checkIfPaymentSuccessful(@RequestParam String cardNumber, @RequestParam String fullName,
-			@RequestParam int cardExpirationYear, @RequestParam int cardExpirationMonth, @RequestParam String cardCvv,
-			@RequestParam double price);
+	Result checkIfPaymentSuccessful(@RequestBody CreateRentalPaymentRequest request);
 }

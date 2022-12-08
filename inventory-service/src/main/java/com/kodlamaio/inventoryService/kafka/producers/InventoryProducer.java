@@ -35,7 +35,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Inventory created event => %s", event.toString()));
 
 		Message<InventoryCreatedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-car-created").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -43,7 +43,7 @@ public class InventoryProducer {
 	public void sendMessage(CarUpdatedEvent event) {
 		LOGGER.info(String.format("Car updated event => %s", event.toString()));
 
-		Message<CarUpdatedEvent> message = MessageBuilder.withPayload(event).setHeader(KafkaHeaders.TOPIC, topic.name())
+		Message<CarUpdatedEvent> message = MessageBuilder.withPayload(event).setHeader(KafkaHeaders.TOPIC, "inventory-car-updated")
 				.build();
 
 		kafkaTemplate.send(message);
@@ -52,7 +52,7 @@ public class InventoryProducer {
 	public void sendMessage(CarDeletedEvent event) {
 		LOGGER.info(String.format("Car deleted event => %s", event.toString()));
 
-		Message<CarDeletedEvent> message = MessageBuilder.withPayload(event).setHeader(KafkaHeaders.TOPIC, topic.name())
+		Message<CarDeletedEvent> message = MessageBuilder.withPayload(event).setHeader(KafkaHeaders.TOPIC, "inventory-car-deleted")
 				.build();
 
 		kafkaTemplate.send(message);
@@ -62,7 +62,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Brand updated event => %s", event.toString()));
 
 		Message<BrandUpdatedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-brand-updated").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -71,7 +71,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Brand deleted event => %s", event.toString()));
 
 		Message<BrandDeletedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-brand-deleted").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -80,7 +80,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Model updated event => %s", event.toString()));
 
 		Message<ModelUpdatedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-model-updated").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -89,7 +89,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Model deleted event => %s", event.toString()));
 
 		Message<ModelDeletedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-model-deleted").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -98,7 +98,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Car Rental created event => %s", event.toString()));
 
 		Message<CarRentalCreatedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-rental-created").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -107,7 +107,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Car rental updated event => %s", event.toString()));
 
 		Message<CarRentalUpdatedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-rental-updated").build();
 
 		kafkaTemplate.send(message);
 	}
@@ -116,7 +116,7 @@ public class InventoryProducer {
 		LOGGER.info(String.format("Car rental deleted event => %s", event.toString()));
 
 		Message<CarRentalDeletedEvent> message = MessageBuilder.withPayload(event)
-				.setHeader(KafkaHeaders.TOPIC, topic.name()).build();
+				.setHeader(KafkaHeaders.TOPIC, "inventory-rental-deleted	").build();
 
 		kafkaTemplate.send(message);
 	}

@@ -20,7 +20,7 @@ public class RentalConsumer {
 	private final ModelMapperService mapper;
 	// private final CarClient client;
 
-	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "payment-received")
+	@KafkaListener(topics = "payment-received", groupId = "payment-receive")
 	public void consume(PaymentReceivedEvent event) {
 		Invoice invoice = mapper.forRequest().map(event, Invoice.class);
 		service.createInvoice(invoice);

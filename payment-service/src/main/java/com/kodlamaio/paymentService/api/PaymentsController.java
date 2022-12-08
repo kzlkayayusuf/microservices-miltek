@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kodlamaio.common.dataAccess.CreateRentalPaymentRequest;
 import com.kodlamaio.common.utilities.results.DataResult;
 import com.kodlamaio.common.utilities.results.Result;
 import com.kodlamaio.paymentService.business.abstracts.PaymentService;
 import com.kodlamaio.paymentService.business.requests.create.CreatePaymentRequest;
-import com.kodlamaio.paymentService.business.requests.create.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentService.business.requests.update.UpdatePaymentRequest;
 import com.kodlamaio.paymentService.business.responses.create.CreatePaymentResponse;
 import com.kodlamaio.paymentService.business.responses.get.GetAllPaymentsResponse;
@@ -81,12 +80,7 @@ public class PaymentsController {
 	}
 
 	@PostMapping("/check")
-	public ResponseEntity<?> checkIfPaymentSuccessful(@RequestParam String cardNumber, @RequestParam String fullName,
-			@RequestParam int cardExpirationYear, @RequestParam int cardExpirationMonth, @RequestParam String cardCvv,
-			@RequestParam double price) {
-
-		CreateRentalPaymentRequest request = new CreateRentalPaymentRequest(cardNumber, fullName, cardExpirationYear,
-				cardExpirationMonth, cardCvv, price);
+	public ResponseEntity<?> checkIfPaymentSuccessful(@RequestBody CreateRentalPaymentRequest request) {
 
 		Result result = paymentService.checkIfPaymentSuccessful(request);
 		if (result.isSuccess()) {

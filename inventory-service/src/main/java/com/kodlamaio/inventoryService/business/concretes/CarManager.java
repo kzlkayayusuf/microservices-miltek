@@ -141,6 +141,7 @@ public class CarManager implements CarService {
 		car.setState(car.getState());
 		car.setPlate(request.getPlate());
 		car.setModelYear(request.getModelYear());
+		car.setDailyPrice(request.getDailyPrice());
 
 		CarUpdatedEvent event = modelMapperService.forResponse().map(car, CarUpdatedEvent.class);
 		producer.sendMessage(event);

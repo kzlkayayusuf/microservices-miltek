@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "filter-inventory")
+@Document(collection = "search-inventory")
 public class CarFilter {
 
 	@Id
@@ -26,6 +26,8 @@ public class CarFilter {
 	private String modelName;
 	@Field(name = "brandName")
 	private String brandName;
+	@Field(name = "dailyPrice")
+	private double dailyPrice;
 	@Field(name = "modelYear")
 	private int modelYear;
 	@Field(name = "plate")
